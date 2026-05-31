@@ -85,7 +85,7 @@ if (mount) {
   let previousY = 0;
 
   loader.load(
-    "/models/chrome-cube.glb",
+    "models/chrome-cube.glb",
     (gltf) => {
       model = gltf.scene;
   
