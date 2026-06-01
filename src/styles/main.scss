@@ -23,6 +23,7 @@
     .project-info h2,
     .footer h2 {
       font-family: var(--font-en);
+    
     }
   
     p,
@@ -58,7 +59,33 @@ body {
   color: #000;
   font-family: var(--font-en), var(--font-tc);
 }
-
+.hero-title,
+.hero-quote,
+.hero-meta,
+.hero-bottom-meta,
+.about-intro,
+.about-role,
+.about h2,
+.work-title,
+.experience,
+.skill h2,
+.skill-sub,
+.skill-list,
+.projects-head,
+.project-grid,
+.graphic h2,
+.graphic-sub,
+.graphic-grid,
+.footer {
+  position: relative;
+  z-index: 5;
+}
+.hero-grid,
+.grid-on-dark,
+.line-group {
+  position: relative;
+  z-index: 1;
+}
 .nav-logo {
 
     font-size: 24px;
@@ -68,93 +95,56 @@ body {
     letter-spacing: 0.08em;
   }
 .nav {
-
     height: 40px;
-  
     display: flex;
-  
     justify-content: space-between;
-  
     align-items: center;
-  
     padding: 0 20px;
-  
     background: #fff;
-  
     border-bottom: 1px solid #000;
-  
     font-family: "Inter";
-  
     font-size: 14px;
-  
     letter-spacing: 0.08em;
-  
     position: sticky;
-  
     top: 0;
-  
     z-index: 999;
   }
   .nav-links {
-
     display: flex;
-  
     gap: 70px;
-  
     align-items: center;
   }
   .nav-links a {
-
     position: relative;
-  
     color: #000;
-  
     text-decoration: none;
-  
     display: flex;
-  
     align-items: center;
-  
     gap: 12px;
-  
     transition: .3s ease;
   }
   .nav-links a::before {
-
     content: "";
-  
     width: 14px;
-  
     height: 14px;
-  
     border: 1px solid #000;
-  
     transition: .3s ease;
   }
   .nav-links a:hover::before {
-
     background: #000;
   }
   #langBtn {
-
     background: transparent;
-  
     border: none;
-  
     color: #000;
-  
     font-family: "Inter";
-  
     font-size: 14px;
-  
     letter-spacing: .08em;
   
     cursor: pointer;
-  
     transition: .3s ease;
   }
   #langBtn:hover {
-
     opacity: .5;
   }
 img {
@@ -163,14 +153,11 @@ img {
 }
 
 .page-grid {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-
-}
-
-
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
 
 .hero {
     position: relative;
@@ -186,6 +173,7 @@ img {
     text-align: center;
     letter-spacing: .04em;
     margin-top: 2px;
+    z-index: 3;
   }
 }
      .hero-grid {
@@ -222,22 +210,26 @@ img {
           no-repeat,
           no-repeat;
       }
-  /* 到黑底區請套 .grid-on-dark，就會變白線 */
+
   .grid-on-dark {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
     background-image:
-      linear-gradient(to right, #fff 1px, transparent 1px),
-      linear-gradient(to right, #fff 1px, transparent 1px),
-      linear-gradient(to right, #fff 1px, transparent 1px),
-      linear-gradient(to right, #fff 1px, transparent 1px),
-      linear-gradient(to right, #fff 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right,  rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
   }
   
   .hero-top-lines {
     position: absolute;
-    top: 62px;
+    top: 81px;
     left: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 0;
   
     span {
       display: block;
@@ -267,7 +259,6 @@ img {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-  
     font-family: "Inter", sans-serif;
     font-size: 200pt;
     font-weight: 500;
@@ -279,15 +270,15 @@ img {
   .hero-quote {
     position: absolute;
     top: 275px;
-    left: 50%;
+    left: 50.5%;
     transform: translateX(-50%);
     z-index: 2;
-  
     font-family: "Inter", sans-serif;
     font-size: 20pt;
     font-weight: 400;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.01em;
     white-space: nowrap;
+    z-index: 3;
   }
   
   .hero-title-lines {
@@ -320,32 +311,33 @@ img {
   
   .hero-meta {
     position: absolute;
-    top: 350px;
-    left: 34.5%;
+    top: 345px;
+    left: 26%;
     right: 25%;
-    z-index: 2;
-  
+    text-align: center;
     display: flex;
     justify-content: space-between;
-  opacity: 0.5;
+    opacity: 0.5;
     font-family: "Inter", sans-serif;
     font-size: 12pt;
     font-weight: 400;
+    line-height: 2;
+    
+    
   }
   
   .floating-cube {
     position: fixed;
     left: 50%;
-    top: 58%;
-    width: 420px;
-    height: 420px;
+    top: 60%;
+    width: 600px;
+    height: 600px;
     transform: translate(-50%, -50%);
-    z-index: 20;
+    z-index: 1 !important;
     pointer-events: auto;
     cursor: grab;
     overflow: visible;
   }
-  
   .floating-cube canvas {
     width: 100% !important;
     height: 100% !important;
@@ -403,9 +395,11 @@ img {
 .about {
   position: relative;
   min-height: 1800px;
-  background: #000;
   color: #fff;
   padding-top: 48px;
+  background: rgba(0, 0, 0, 0.9);
+  height: 1000px;
+  z-index: 2;
 }
 
 .about-intro {
@@ -419,6 +413,8 @@ img {
     font-size: 28pt;
     font-weight: 400;
     margin-bottom: 12px;
+    z-index: 3;
+    position: relative;
   }
 
   p {
@@ -426,6 +422,8 @@ img {
     font-size: 14pt;
     line-height: 1.45;
     font-weight: 200;
+    z-index: 3;
+    position: relative;
   }
 }
 
@@ -436,8 +434,16 @@ img {
   padding: 30px 0 0;
   margin-left: 78px;
   text-align: right;
+  z-index: 3;
 }
-
+.about-photo {
+    position: absolute;
+    top: 300px;
+    width: 200px;
+    left: 26.7%;
+    margin-top: 30px;
+    filter: grayscale(1);
+  }
 .about h2,
 .skill h2,
 .projects h2 {
@@ -449,6 +455,7 @@ img {
 .about h2 {
   padding-left: 30px;
   margin-bottom: 0px;
+  margin-top: 350px;
 }
 
 .work-title {
@@ -465,36 +472,45 @@ img {
   padding: 48px 26px;
   font-size: 14pt;
   line-height: 1.6;
+  z-index: 3;
+  position: relative;
 
   h4 {
     font-size: 14pt;
     font-weight: 500;
     margin-bottom: 0px;
     margin-left: 20px;
+    z-index: 3;
+    position: relative;
   }
-
+  h4:hover {
+    background: #fff;
+    color: #000;
+    margin-left: 30px;
+    size: 2%;
+}
   p {
     font-family: "Noto Sans TC", "PingFang TC";
     font-size: 14pt;
     font-weight: 300;
     margin-left: 20px;
+    z-index: 3;
+    position: relative;
   }
+  p:hover {
+    background: #fff;
+    color: #000;
+    margin-left: 30px;
+    size: 2%;
+}
   p2{
     margin-left: 250px;
     text-align: right;
+    z-index: 3;
+    position: relative;
   }
-}
-.experience:hover {
-    background: #fff;
-    color: #000;
-}
-.about-photo {
-  position: absolute;
-  left: 26.7%;
-  bottom: 2px;
-  width: 200px;
-  margin-top: 30px;
-  filter: grayscale(1);
+
+
 }
 
 .cube-about {
@@ -507,7 +523,8 @@ img {
 .skill {
   position: relative;
   min-height: 800px;
-  background: #000;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2;
   color: #fff;
   padding-top: 20px;
   
@@ -553,23 +570,35 @@ margin-top: 170px;
     grid-template-columns: 35% 65%;
     margin-bottom: 18px;
   }
+  div:hover {
+    background: #fff;
+    color: #000;
+    margin-left: 30px;
+    size: 2%;
+}
   p{
     
     margin-top: 0px;
     text-align: right;
   }
-}
-.skill-list:hover{
+  p:hover {
     background: #fff;
     color: #000;
+    margin-left: 30px;
+    size: 2%;
 }
+}
+
 /* PROJECTS */
 
 .projects {
-  background: #000;
   color: #fff;
   padding-top: 40px;
   padding-bottom: 80px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.9);
+  height: 1500px;
+  z-index: 2;
 }
 
 .projects-head {
@@ -596,8 +625,8 @@ margin-top: 170px;
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
-  padding: 48px 24px 0;
+  gap: 350px;
+  padding: 48px 122px 0;
 }
 
 .project-grid article {
@@ -634,10 +663,11 @@ margin-top: 170px;
 
 .graphic {
   position: relative;
-  background: #fff;
   color: #000;
   min-height: 1900px;
   padding-top: 56px;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .graphic h2 {
@@ -661,6 +691,7 @@ margin-top: 170px;
   position: relative;
   min-height: 2000px;
   padding-top: 80px;
+  
 }
 
 .graphic article {
@@ -725,7 +756,6 @@ margin-top: 170px;
 .footer {
   position: relative;
   min-height: 480px;
-  background: #fff;
   color: #000;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;

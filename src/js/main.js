@@ -129,7 +129,7 @@ if (mount) {
       });
       
       gsap.to(mount, {
-        left: "29%",
+        left: "98%",
         top: "55%",
         scale: 0.9,
         scrollTrigger: {
@@ -141,11 +141,22 @@ if (mount) {
       });
       
       gsap.to(mount, {
-        left: "88%",
+        left: "18%",
+        top: "20%",
+        scale: 0.8,
+        scrollTrigger: {
+          trigger: ".graphic",
+          start: "top bottom",
+          end: "bottom center",
+          scrub: true,
+        },
+      });
+      gsap.to(mount, {
+        left: "98%",
         top: "30%",
         scale: 1.5,
         scrollTrigger: {
-          trigger: ".graphic",
+          trigger: ".footer",
           start: "top bottom",
           end: "bottom center",
           scrub: true,
