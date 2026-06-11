@@ -215,3 +215,175 @@ if (mount) {
     renderer.setSize(mount.clientWidth, mount.clientHeight);
   });
 }
+/* ================================
+   FOODIE FRIENDS MODAL
+================================ */
+
+const foodModal = document.querySelector("#foodModal");
+const openFoodBtns = document.querySelectorAll("[data-open-food]");
+const closeFoodBtns = document.querySelectorAll("[data-close-food]");
+
+function openFoodModal() {
+  if (!foodModal) return;
+
+  foodModal.classList.add("is-open");
+  foodModal.setAttribute("aria-hidden", "false");
+
+  document.body.style.overflow = "hidden";
+
+  const foodCase = foodModal.querySelector(".food-case");
+  if (foodCase) {
+    foodCase.scrollTop = 0;
+  }
+}
+
+function closeFoodModal() {
+  if (!foodModal) return;
+
+  foodModal.classList.remove("is-open");
+  foodModal.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
+}
+
+openFoodBtns.forEach((btn) => {
+  btn.addEventListener("click", openFoodModal);
+});
+
+closeFoodBtns.forEach((btn) => {
+  btn.addEventListener("click", closeFoodModal);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && foodModal?.classList.contains("is-open")) {
+    closeFoodModal();
+  }
+});
+/* ================================
+   IF MUSIC REMEMBERS MODAL
+================================ */
+
+const musicModal = document.querySelector("#musicModal");
+const openMusicBtns = document.querySelectorAll("[data-open-music]");
+const closeMusicBtns = document.querySelectorAll("[data-close-music]");
+
+function openMusicModal() {
+  if (!musicModal) return;
+
+  musicModal.classList.add("is-open");
+  musicModal.setAttribute("aria-hidden", "false");
+
+  document.body.style.overflow = "hidden";
+
+  const musicPage = musicModal.querySelector(".music-page");
+  if (musicPage) {
+    musicPage.scrollTop = 0;
+  }
+}
+
+function closeMusicModal() {
+  if (!musicModal) return;
+
+  musicModal.classList.remove("is-open");
+  musicModal.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
+}
+
+openMusicBtns.forEach((btn) => {
+  btn.addEventListener("click", openMusicModal);
+});
+
+closeMusicBtns.forEach((btn) => {
+  btn.addEventListener("click", closeMusicModal);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && musicModal?.classList.contains("is-open")) {
+    closeMusicModal();
+  }
+});
+/* ================================
+   MOCHI MOCHI MODAL
+================================ */
+
+(() => {
+  const mochiModal = document.querySelector("#mochiModal");
+  const openMochiBtns = document.querySelectorAll("[data-open-mochi]");
+  const closeMochiBtns = document.querySelectorAll("[data-close-mochi]");
+
+  if (!mochiModal || openMochiBtns.length === 0) return;
+
+  function openMochiModal() {
+    mochiModal.classList.add("is-open");
+    mochiModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    const mochiPage = mochiModal.querySelector(".mochi-page");
+    if (mochiPage) {
+      mochiPage.scrollTop = 0;
+    }
+  }
+
+  function closeMochiModal() {
+    mochiModal.classList.remove("is-open");
+    mochiModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  openMochiBtns.forEach((btn) => {
+    btn.addEventListener("click", openMochiModal);
+  });
+
+  closeMochiBtns.forEach((btn) => {
+    btn.addEventListener("click", closeMochiModal);
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mochiModal.classList.contains("is-open")) {
+      closeMochiModal();
+    }
+  });
+})();
+/* ================================
+   GOODMODEL MODAL
+================================ */
+
+(() => {
+  const goodmodelModal = document.querySelector("#goodmodelModal");
+  const openGoodmodelBtns = document.querySelectorAll("[data-open-goodmodel]");
+  const closeGoodmodelBtns = document.querySelectorAll("[data-close-goodmodel]");
+
+  if (!goodmodelModal || openGoodmodelBtns.length === 0) return;
+
+  function openGoodmodelModal() {
+    goodmodelModal.classList.add("is-open");
+    goodmodelModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    const goodmodelPage = goodmodelModal.querySelector(".goodmodel-page");
+    if (goodmodelPage) {
+      goodmodelPage.scrollTop = 0;
+    }
+  }
+
+  function closeGoodmodelModal() {
+    goodmodelModal.classList.remove("is-open");
+    goodmodelModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  openGoodmodelBtns.forEach((btn) => {
+    btn.addEventListener("click", openGoodmodelModal);
+  });
+
+  closeGoodmodelBtns.forEach((btn) => {
+    btn.addEventListener("click", closeGoodmodelModal);
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && goodmodelModal.classList.contains("is-open")) {
+      closeGoodmodelModal();
+    }
+  });
+})();

@@ -790,3 +790,2198 @@ margin-top: 170px;
   opacity: 0;
   transform: translateY(70px);
 }
+/* ================================
+   FOODIE FRIENDS CASE STUDY MODAL
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+
+@font-face {
+  font-family: "GenSenRounded";
+  src: local("GenSenRounded TW"),
+       local("GenSenRounded TW R"),
+       local("泉源圓體");
+}
+
+.project-card-food {
+  cursor: pointer;
+}
+
+.food-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.food-modal.is-open {
+  display: block;
+}
+
+.food-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* 整個懸浮作品頁 */
+.food-page {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 690px;
+  height: calc(100vh - 48px);
+  background: #fff;
+  color: #111111;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.food-page::-webkit-scrollbar {
+  width: 3px;
+}
+
+.food-page::-webkit-scrollbar-thumb {
+  background: #111;
+}
+
+.food-page::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* 關閉按鈕 */
+.food-close {
+  position: sticky;
+  top: 8px;
+  left: 648px;
+  z-index: 20;
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid #111;
+  background:#fff;
+  color: #111;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+.food-page button{
+  font-weight: 100;
+  color: #343434;
+}
+/* 封面 */
+.food-cover {
+  width: 100%;
+  background: #fff;
+  
+}
+
+.food-cover img {
+  width: 100%;
+  display: block;
+}
+
+/* 每個區塊 */
+.food-block {
+  position: relative;
+  background: #ffffff;
+  padding: 0 0 34px;
+  overflow: hidden;
+}
+
+/* 四條直線背景 */
+.food-block.grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22));
+  background-repeat: no-repeat;
+  background-size: 0.7px 100%, 0.7px 100%, 0.7px 100%, 0.7px 100%;
+  background-position:
+    48px 0,
+    190px 0,
+    364px 0,
+    564px 0,
+    654px 0;
+  z-index: 0;
+}
+
+/* 標題 */
+.food-title-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 48px;
+}
+
+.food-title-wrap h2 {
+  margin: 0;
+  padding-left: 46px;
+  font-family: "Inter", sans-serif;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 1;
+  color: #000;
+
+}
+
+/* 標題下三條線 */
+.food-title-lines {
+  margin-top: 12px;
+}
+
+.food-title-lines span {
+  display: block;
+  width: 100%;
+  background: #111;
+}
+
+.food-title-lines .line-1 {
+  height: 7px;
+  margin-bottom: 42px;
+}
+
+.food-title-lines .line-2 {
+  height: 3px;
+  margin-bottom: 34px;
+}
+
+.food-title-lines .line-3 {
+  height: 2px;
+}
+
+
+/* 內容區 */
+.food-block-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 210px;
+  padding-top: 42px;
+}
+
+/* 一般中文 */
+.food-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 15px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #000000;
+  margin: 0;
+}
+
+/* 一般英文 */
+.food-en {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+/* 右側文字欄 */
+.food-text-col {
+  width: 400px;
+  margin-left: 364px;
+}
+
+/* Overview */
+.food-overview-layout {
+  min-height: 30px;
+}
+
+/* My Role */
+.food-role-layout {
+  min-height: 300px;
+}
+
+/* 圖片欄位 */
+.food-image-layout {
+  min-height: auto;
+}
+
+.food-image-col {
+  position: relative;
+  margin-left: 190px;
+  width: 680px;
+}
+
+.food-image-col img {
+  width: 148%;
+  display: block;
+}
+
+.food-color-img {
+  width: 315px;
+  margin-left: 190px;
+}
+
+.food-items-img {
+  width: 315px;
+  margin-left: 190px;
+}
+
+/* Typography */
+.food-typography-layout {
+  min-height: 360px;
+}
+
+.food-type-col {
+  width: 500px;
+  margin-left: 190px;
+  border-top: 1px solid #111;
+}
+
+.food-en-type {
+  font-family: "Nunito", sans-serif !important;
+}
+
+.food-zh-type {
+  font-family: "GenSenRounded", "PingFang TC", sans-serif !important;
+}
+
+.type-row {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  column-gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid #111;
+}
+
+.type-label {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #111;
+}
+
+.type-row h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: #111;
+}
+
+.type-row p {
+  margin: 0;
+  font-size: 10px;
+  line-height: 3;
+  color: #111;
+}
+
+.type-sample {
+  padding: 18px 0 0;
+}
+
+.type-sample p:nth-child(1) {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.type-sample p:nth-child(2) {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.type-sample p:nth-child(3) {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* ================================
+   USER FLOW - GIF 區
+================================ */
+
+.food-userflow-layout {
+  min-height: auto;
+  padding-bottom: 30px;
+}
+
+.food-flow-map {
+  width: 600px;
+  margin-left: 190px;
+  margin-bottom: 60px;
+}
+
+.food-flow-map img {
+  width: 160%;
+  display: block;
+}
+
+
+
+.food-gif-step p {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.food-gif-step img {
+  width: 500px;
+  display: block;
+  justify-self: center;
+}
+
+/* ================================
+   USER FLOW - 兩支手機並排
+================================ */
+
+.food-userflow-layout {
+  min-height: auto;
+  padding-top: 42px;
+  padding-bottom: 60px;
+}
+
+.food-flow-map {
+  width: 315px;
+  margin-left: 180px;
+  margin-bottom: 70px;
+}
+
+/* 每一個步驟 */
+.userflow-step {
+  width: 150px;
+  display: grid;
+ 
+}
+
+/* 步驟文字 */
+.userflow-step > p {
+  margin: 0 0 16px;
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #4a4a4a;  
+  margin-left: 190px;
+}
+/* 手機群組 */
+.userflow-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 250px;
+  margin-top: 30px;
+}
+
+/* 兩支手機的真正間距 */
+.userflow-phones.two-phone {
+  gap: 30px;
+}
+
+
+/* 單支手機 */
+.phone-crop.single {
+  width: 600px;
+  height: 330px;
+  overflow: hidden;
+}
+
+.phone-crop {
+  position: relative;
+  width: 150px;
+  height: 300px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 圖片本體維持你要的寬 600 */
+.phone-crop img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  display: block;
+
+}
+.phone-crop {
+  position: relative;
+  width: 150px;
+  height: 300px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 圖片本體維持你要的寬 600 */
+.phone-c img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 145px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  display: block;
+
+}
+.phone-c {
+  position: relative;
+  width: 150px;
+  height: 300px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 圖片本體維持你要的寬 600 */
+.phone-crop2 img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+.phone-crop2 {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin-left: 65px;
+  margin-top: 10px;
+  overflow: hidden;
+  
+  flex-shrink: 0;
+}
+
+
+.userflow-line {
+  position: relative;
+  width: 1px;
+  height: 88px;
+  background: #000000;
+  margin: 40px 0 60px 410px;
+}
+
+/* 箭頭頭 */
+.userflow-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ================================
+   KEY SCREENS - PNG 區
+================================ */
+
+.food-keyscreen-layout {
+  min-height: auto;
+  padding-bottom: 40px;
+}
+
+.key-screen-row {
+  width: 400px;
+  margin-left: 72px;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  align-items: center;
+  column-gap: 42px;
+  margin-bottom: 68px;
+}
+
+.key-screen-row:last-child {
+  margin-bottom: 0;
+}
+
+.key-screen-text {
+  width: 200px;
+}
+.key-screen-text img {
+  width: 270px;
+  margin-top: 20px;
+}
+.key-screen-test img {
+  width: 160px;
+  margin: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+.key-screen-text h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+}
+
+.key-num {
+  margin-bottom: 6px;
+  color: #ef7600;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.key-screen-img img {
+  width: 180px;
+  display: block;
+  margin-left: 80px;
+ 
+}
+.key-screen2-img img {
+  width: 270px;
+  display: block;
+  margin-left: 80px;
+
+}
+.key-screen-large .key-screen-img img {
+  width: 280px;
+}
+
+/* Reflection */
+
+.food-reflection-layout {
+  min-height: 190px;
+
+
+}
+.food-text-col{
+  display: grid;
+  flex-direction: column;
+ text-align: left;
+ margin-top: 20px;
+ width: 280px;
+
+}
+/* Advertise */
+.food-ad-layout {
+  min-height: auto;
+  padding-top: 42px;
+
+}
+
+.food-ad-img {
+  width: 100%;
+}
+
+.food-ad-img img {
+  width: 100%;
+  display: block;
+}
+
+/* 開啟動畫 */
+.food-modal.is-open .food-page {
+  animation: foodPageIn 0.28s ease;
+}
+
+@keyframes foodPageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ================================
+   RWD
+================================ */
+
+@media (max-width: 760px) {
+  .food-page {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .food-close {
+    left: calc(100% - 40px);
+  }
+
+  .food-block.grid-bg::before {
+    background-position:
+      24px 0,
+      120px 0,
+      50% 0,
+      calc(100% - 24px) 0;
+  }
+
+  .food-title-wrap h2 {
+    padding-left: 24px;
+    font-size: 44px;
+  }
+
+  .food-text-col,
+  .food-image-col,
+  .food-color-img,
+  .food-items-img,
+  .food-type-col,
+  .food-flow-map {
+    width: calc(100% - 88px);
+    margin-left: 44px;
+  }
+
+  .food-gif-step,
+  .key-screen-row {
+    width: calc(100% - 88px);
+    margin-left: 44px;
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+  }
+
+  .food-gif-step img,
+  .key-screen-img img,
+  .key-screen-large .key-screen-img img {
+    width: min(260px, 100%);
+  }
+
+  .food-flow-orange-line {
+    margin-left: 50%;
+  }
+  .userflow-step {
+    width: calc(100% - 88px);
+    margin-left: 44px;
+  }
+
+  .userflow-phones.two-phone {
+    gap: 16px;
+  }
+
+  .userflow-phones img {
+    width: min(140px, 42vw);
+  }
+
+  .userflow-phones.one-phone img {
+    width: min(160px, 48vw);
+  }
+
+  .userflow-line {
+    margin-left: 50%;
+  }
+}
+/* ================================
+   IF MUSIC REMEMBERS CASE STUDY MODAL
+================================ */
+
+.project-card-music {
+  cursor: pointer;
+}
+
+.music-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.music-modal.is-open {
+  display: block;
+}
+
+.music-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* 整個懸浮作品頁 */
+.music-page {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 690px;
+  height: calc(100vh - 48px);
+  background: #fff;
+  color: #111;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.music-page::-webkit-scrollbar {
+  width: 3px;
+}
+
+.music-page::-webkit-scrollbar-thumb {
+  background: #111;
+}
+
+.music-page::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* 關閉按鈕 */
+.music-close {
+  position: sticky;
+  top: 8px;
+  left: 648px;
+  z-index: 20;
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid #111;
+  background: #fff;
+  color: #111;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 100;
+}
+
+/* 封面 */
+.music-cover {
+  width: 100%;
+  background: #fff;
+}
+
+.music-cover img {
+  width: 100%;
+  display: block;
+}
+
+/* 每個區塊 */
+.music-block {
+  position: relative;
+  background: #fff;
+  padding: 0 0 34px;
+  overflow: hidden;
+}
+
+/* 背景直線 */
+.music-block.music-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22));
+  background-repeat: no-repeat;
+  background-size: 0.7px 100%, 0.7px 100%, 0.7px 100%, 0.7px 100%, 0.7px 100%;
+  background-position:
+    48px 0,
+    190px 0,
+    364px 0,
+    564px 0,
+    654px 0;
+  z-index: 0;
+}
+
+/* 標題 */
+.music-title-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 48px;
+}
+
+.music-title-wrap h2 {
+  margin: 0;
+  padding-left: 46px;
+  font-family: "Inter", sans-serif;
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 0.95;
+  color: #000;
+}
+
+/* 標題下方三條線 */
+.music-title-lines {
+  margin-top: 12px;
+}
+
+.music-title-lines span {
+  display: block;
+  width: 100%;
+  background: #111;
+}
+
+.music-title-lines .line-1 {
+  height: 7px;
+  margin-bottom: 42px;
+}
+
+.music-title-lines .line-2 {
+  height: 3px;
+  margin-bottom: 34px;
+}
+
+.music-title-lines .line-3 {
+  height: 2px;
+}
+
+/* 內容區 */
+.music-block-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 210px;
+  padding-top: 42px;
+}
+
+/* 字體 */
+.music-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #000;
+  margin: 0;
+}
+
+.music-en {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.music-text-col {
+  width: 300px;
+  margin-left: 364px;
+}
+
+/* Overview：左圖右文 */
+.music-overview-layout {
+  min-height: 230px;
+  display: grid;
+  grid-template-columns: 190px 280px;
+  column-gap: 86px;
+  align-items: start;
+  padding-top: 60px;
+  margin-left: 90px;
+}
+
+.music-overview-img {
+  width: 250px;
+  margin-left: 20px;
+}
+
+.music-overview-img img {
+  width: 100%;
+  display: block;
+}
+
+.music-overview-text {
+  width: 280px;
+  
+}
+
+.music-overview-text .music-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #000;
+  margin: 0;
+}
+/* Concept：左圖右文 */
+.music-concept-layout {
+  min-height: 200px;
+  display: grid;
+  grid-template-columns: 190px 29px;
+  column-gap: 83px;
+  align-items: start;
+  padding-top: 60px;
+  margin-left: 90px;
+}
+
+.music-concept-img {
+  width: 130px;
+  margin-left: 100px;
+}
+
+.music-concept-img img {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.music-concept-text {
+  width: 230px;
+  min-height:100px ;
+}
+
+.music-concept-text .music-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #000;
+  margin: 0;
+}
+/* Role / Direction */
+.music-role-layout {
+  min-height: 200px;
+}
+.music-zh{
+  margin-bottom:10px ;
+  max-width: 230px;
+}
+.music-direction-layout {
+  min-height: 200px;
+}
+
+.music-reflection-layout {
+  min-height: 80px;
+}
+
+.music-takeaway-layout {
+  min-height: 180px;
+}
+
+/* ================================
+   Visual Direction 特殊區
+   兩張背景圖 + GIF 疊在上面
+================================ */
+
+.music-visual-block {
+  padding-bottom: 0;
+}
+
+.music-visual-scene {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 第一張背景圖 */
+.scene-computer {
+  background-image: url("music/bg.png");
+  background-size: cover;
+  background-position: center;
+  margin-top: 30px;
+  min-height: 560px;
+}
+
+/* 第二張背景圖 */
+.scene-player {
+  height: 1200px;
+  background-image: url("music/bg2.png");
+  background-size: 125% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.scene-computer-final {
+  height: 700px;
+  background-image: url("music/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 左上角介紹文字 */
+.music-visual-text {
+  position: absolute;
+  top: 58px;
+  left: 46px;
+  width: 600px;
+  z-index: 3;
+}
+
+/* 第一個 GIF 疊在背景上 */
+.music-computer-gif {
+  position: absolute;
+  width: 800px;
+  right: -150px;
+  bottom: -20px;
+  z-index: 2;
+  display: block;
+}
+
+/* 第二個 GIF 疊在背景上 */
+.music-player-gif {
+  position: absolute;
+  width: 520px;
+  right: 20px;
+  bottom: 50px;
+  z-index: 2;
+  display: block;
+}
+
+/* Visual Direction 最後一張展示圖 */
+.music-visual-final {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.scene-computer-final img {
+  width: 80%;
+  margin-top: 200px;
+  display: block;
+  bottom: -50px;
+}
+
+/* Takeaways 底圖 */
+.music-bottom-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.music-bottom-img img {
+  width: 100%;
+  display: block;
+
+}
+
+/* 開啟動畫 */
+.music-modal.is-open .music-page {
+  animation: musicPageIn 0.28s ease;
+}
+
+@keyframes musicPageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* RWD */
+@media (max-width: 760px) {
+  .music-page {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .music-close {
+    left: calc(100% - 40px);
+  }
+
+  .music-block.music-grid-bg::before {
+    background-position:
+      24px 0,
+      120px 0,
+      50% 0,
+      calc(100% - 24px) 0,
+      calc(100% - 8px) 0;
+  }
+
+  .music-title-wrap h2 {
+    padding-left: 24px;
+    font-size: 38px;
+  }
+
+  .music-text-col {
+    width: calc(100% - 88px);
+    margin-left: 44px;
+  }
+
+  .music-overview-img,
+  .music-concept-img {
+    width: 180px;
+    margin-left: 44px;
+    margin-bottom: 24px;
+  }
+
+  .music-visual-scene {
+    height: 460px;
+  }
+
+  .music-visual-text {
+    top: 36px;
+    left: 24px;
+    width: 240px;
+  }
+
+  .music-computer-gif,
+  .music-player-gif {
+    width: 420px;
+    right: -80px;
+    bottom: 40px;
+  }
+}
+/* Visual Direction 最下面補的區塊 */
+.scene-computer-final {
+  background-image: url("music/bg.png");
+  background-size: cover;
+  background-position: center;
+  height: 560px;
+}
+
+/* 左上角文字 */
+.scene-computer-final .music-visual-text {
+  position: absolute;
+  top: 42px;
+  left: 46px;
+  width: 260px;
+  z-index: 3;
+}
+
+.scene-computer-final .music-visual-text .music-en {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  color: #2f2f2f;
+  margin: 0;
+}
+
+/* 疊在背景上的 PNG */
+.music-computer-final-png {
+  position: absolute;
+  width: 470px;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: block;
+}
+/* ================================
+   MOCHI MOCHI CASE STUDY MODAL
+   based on Foodie Friends CSS
+================================ */
+
+.project-card-mochi {
+  cursor: pointer;
+}
+
+.mochi-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.mochi-modal.is-open {
+  display: block;
+}
+
+.mochi-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.mochi-page {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 690px;
+  height: calc(100vh - 48px);
+  background: #fff;
+  color: #111;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mochi-page::-webkit-scrollbar {
+  width: 3px;
+}
+
+.mochi-page::-webkit-scrollbar-thumb {
+  background: #111;
+}
+
+.mochi-page::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.mochi-close {
+  position: sticky;
+  top: 8px;
+  left: 648px;
+  z-index: 30;
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid #111;
+  background: #fff;
+  color: #343434;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 100;
+}
+
+/* Hero */
+.mochi-cover {
+  width: 100%;
+  background: #fff;
+}
+
+.mochi-cover img {
+  width: 100%;
+  display: block;
+}
+/* Page Structure 箭頭 */
+.mochi-page-arrow {
+  position: relative;
+  width: 0.7px;
+  height: 30px;
+  background: #666;
+  margin: 10px 0 30px 9px;
+}
+
+/* 箭頭頭 */
+.mochi-page-arrow::after {
+  content: "";
+  position: absolute;
+  left: 35%;
+  bottom: 0px;
+  width: 3px;
+  height: 3px;
+  border-right: 0.7px solid #666;
+  border-bottom: 0.7px solid #666;
+  transform: translateX(-45%) rotate(45deg);
+}
+
+/* Block */
+.mochi-block {
+  position: relative;
+  background: #fff;
+  padding: 0 0 34px;
+  overflow: hidden;
+}
+
+/* 五條線 */
+.mochi-block.mochi-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
+    linear-gradient(to right, rgba(0,0,0,0.22), rgba(0,0,0,0.22));
+  background-repeat: no-repeat;
+  background-size:
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%;
+  background-position:
+    48px 0,
+    190px 0,
+    364px 0,
+    564px 0,
+    654px 0;
+  z-index: 0;
+}
+
+/* Title */
+.mochi-title-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 48px;
+}
+
+.mochi-title-wrap h2 {
+  margin: 0;
+  padding-left: 46px;
+  font-family: "Inter", sans-serif;
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1;
+  color: #000;
+}
+
+.mochi-title-lines {
+  margin-top: 12px;
+}
+
+.mochi-title-lines span {
+  display: block;
+  width: 100%;
+  background: #111;
+}
+
+.mochi-title-lines .line-1 {
+  height: 7px;
+  margin-bottom: 42px;
+}
+
+.mochi-title-lines .line-2 {
+  height: 3px;
+  margin-bottom: 34px;
+}
+
+.mochi-title-lines .line-3 {
+  height: 2px;
+}
+
+/* Content */
+.mochi-block-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 210px;
+  padding-top: 42px;
+}
+
+.mochi-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  color: #000;
+  margin: 0;
+}
+
+.mochi-en {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: #000;
+  margin: 0;
+}
+
+.mochi-text-col {
+  width: 300px;
+  margin-left: 364px;
+}
+
+/* Section heights */
+.mochi-overview-layout {
+  min-height: 100px;
+}
+
+.mochi-role-layout {
+  min-height: 190px;
+}
+
+.mochi-goal-layout {
+  min-height: 190px;
+}
+
+.mochi-reflection-layout {
+  min-height: 220px;
+  margin-bottom: 50px;
+}
+
+/* Page Structure */
+.mochi-page-layout {
+  min-height: 100px;
+}
+
+.mochi-page-list {
+  width: 260px;
+  margin-left: 365px;
+}
+
+.mochi-page-item {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 16px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.mochi-page-item img {
+  width: 18px;
+  display: block;
+}
+
+.mochi-page-item p {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 13px;
+  font-weight: 200;
+  color: #000;
+  margin: 0;
+}
+/* Mochi Visual Direction */
+.mochi-visual-layout {
+  min-height: auto;
+  padding-top: 42px;
+  padding-bottom: 60px;
+}
+
+.mochi-visual-img {
+  position: relative;
+  z-index: 1;
+  width: 380px;
+  margin-left: 190px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.mochi-visual-img:last-child {
+  margin-bottom: 0;
+}
+
+.mochi-visual-img p {
+  margin: 0 0 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
+
+.mochi-visual-img img {
+  width: 100%;
+  display: block;
+}
+/* Visual Direction */
+.mochi-visual-layout {
+  min-height: auto;
+  padding-top: 42px;
+}
+
+.mochi-text-left {
+  width: 260px;
+  margin-left: 46px;
+  margin-bottom: 40px;
+}
+
+
+
+
+/* Interface Design */
+.mochi-interface-layout {
+  min-height: auto;
+  padding-top: 42px;
+  padding-bottom: 60px;
+}
+
+.mochi-interface-row {
+  position: relative;
+  width: 500px;
+  margin-left: 46px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 6px;
+  align-items: center;
+  margin-bottom: 10px;
+  height:400px;
+}
+.mochi-interface-row img {
+  width: 500px;
+  display: block;
+}
+.mochi-interface-text {
+  width: 190px;
+}
+.mochi-interface-text h3 {
+  margin: 0 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+.mochi-interface-text p {
+  font-size: 12px;
+}
+
+.mochi-interface-row2 {
+  position: relative;
+  width: 520px;
+  margin-left: 46px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 6px;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 200px;
+}
+.mochi-interface-row2 img{ 
+  margin-left: 120px;
+} 
+.mochi-interface-text2 {
+  width: 190px;
+}
+.mochi-interface-text2 h3 {
+  margin: 0 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+.mochi-interface-text2 p {
+  font-size: 12px;
+}
+
+.mochi-interface-row3 {
+  position: relative;
+  width: 600px;
+  margin-left: 46px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 0px;
+  align-items: center;
+  margin-bottom: 10px;
+  height:400px;
+}
+.mochi-interface-row3 img {
+  width: 650px;
+  display: block;
+}
+.mochi-interface-text3 {
+  width: 260px;
+}
+.mochi-interface-text3 h3 {
+  margin: 0 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+.mochi-interface-row4 {
+  position: relative;
+  width: 300px;
+  margin-left: 46px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  column-gap: 0px;
+  align-items: center;
+  margin-bottom: 10px;
+  height:400px;
+}
+.mochi-interface-text4 p {
+  font-size: 12px;
+}
+
+.mochi-interface-row4 img {
+  width: 650px;
+  display: block;
+}
+.mochi-interface-text4 {
+  width: 180px;
+}
+.mochi-interface-text4 h3 {
+  margin: 0 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+
+.mochi-interface-text4 p {
+  font-size: 12px;
+}
+.mochi-interface-row4.image-only img {
+  width: 650px;
+  display: block;
+  margin-left: 85px;
+}
+
+/* 開啟動畫 */
+.mochi-modal.is-open .mochi-page {
+  animation: mochiPageIn 0.28s ease;
+}
+
+@keyframes mochiPageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+/* ================================
+   GOODMODEL CASE STUDY MODAL
+================================ */
+
+.project-card-goodmodel {
+  cursor: pointer;
+}
+
+.goodmodel-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.goodmodel-modal.is-open {
+  display: block;
+}
+
+.goodmodel-modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.goodmodel-page {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 690px;
+  height: calc(100vh - 48px);
+  background: #000;
+  color: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.goodmodel-page::-webkit-scrollbar {
+  width: 3px;
+}
+
+.goodmodel-page::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+.goodmodel-page::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.goodmodel-close {
+  position: sticky;
+  top: 8px;
+  left: 648px;
+  z-index: 30;
+  width: 28px;
+  height: 28px;
+  border: 0.5px solid #fff;
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 100;
+}
+
+/* Hero */
+.goodmodel-cover {
+  width: 100%;
+  background: #000;
+}
+
+.goodmodel-cover img {
+  width: 100%;
+  display: block;
+}
+
+/* Block */
+.goodmodel-block {
+  position: relative;
+  background: #000;
+  padding: 0 0 34px;
+  overflow: hidden;
+}
+
+/* 五條直線背景 */
+.goodmodel-block.goodmodel-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.28), rgba(255,255,255,0.28)),
+    linear-gradient(to right, rgba(255,255,255,0.28), rgba(255,255,255,0.28)),
+    linear-gradient(to right, rgba(255,255,255,0.28), rgba(255,255,255,0.28)),
+    linear-gradient(to right, rgba(255,255,255,0.28), rgba(255,255,255,0.28)),
+    linear-gradient(to right, rgba(255,255,255,0.28), rgba(255,255,255,0.28));
+  background-repeat: no-repeat;
+  background-size:
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%,
+    0.7px 100%;
+  background-position:
+    48px 0,
+    190px 0,
+    364px 0,
+    484px 0,
+    654px 0;
+  z-index: 0;
+}
+
+/* Title */
+.goodmodel-title-wrap,
+.goodmodel-small-title-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 48px;
+}
+
+.goodmodel-title-wrap h2 {
+  margin: 0;
+  padding-left: 46px;
+  font-family: "Inter", sans-serif;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+}
+
+.goodmodel-small-title-wrap h2 {
+  margin: 0;
+  padding-left: 46px;
+  font-family: "Inter", sans-serif;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+}
+
+.goodmodel-title-lines {
+  margin-top: 12px;
+}
+
+.goodmodel-title-lines span {
+  display: block;
+  width: 100%;
+  background: #fff;
+}
+
+.goodmodel-title-lines .line-1 {
+  height: 7px;
+  margin-bottom: 42px;
+}
+
+.goodmodel-title-lines .line-2 {
+  height: 3px;
+  margin-bottom: 34px;
+}
+
+.goodmodel-title-lines .line-3 {
+  height: 2px;
+}
+
+/* Content */
+.goodmodel-block-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 210px;
+  padding-top: 42px;
+}
+
+.goodmodel-zh {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin: 0;
+}
+
+.goodmodel-en {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: 0.12em;
+  color: #fff;
+  margin: 0;
+}
+
+.goodmodel-text-col {
+  width: 470px;
+  margin-left: 190px;
+}
+
+.goodmodel-stage {
+  font-family: "Inter", "PingFang TC", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+}
+
+/* Section heights */
+.goodmodel-overview-layout {
+  min-height: 150px;
+}
+
+.goodmodel-concept-layout {
+  min-height: 350px;
+}
+
+.goodmodel-visual-layout {
+  min-height: 200px;
+}
+
+.goodmodel-tech-layout {
+  min-height: 300px;
+}
+
+.goodmodel-reflection-layout {
+  min-height: 200px;
+}
+
+.goodmodel-tech-desc {
+  margin-top: 22px;
+}
+
+/* Interaction Flow */
+.goodmodel-flow-layout {
+  padding-top: 42px;
+  padding-bottom: 60px;
+}
+
+.goodmodel-flow-step {
+  width: 520px;
+  margin-left: 190px;
+  margin-bottom: 28px;
+}
+
+.goodmodel-flow-step > p {
+  margin: 0 0 18px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.goodmodel-flow-step > p span {
+  font-family: "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-weight: 200;
+}
+
+.goodmodel-flow-imgs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 34px;
+}
+
+.goodmodel-flow-imgs img {
+  width: 400px;
+  display: block;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.goodmodel-flow-arrow {
+  position: relative;
+  width: 0.7px;
+  height: 90px;
+  background: #fff;
+  margin: 22px 0 60px 450px;
+}
+
+.goodmodel-flow-arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 7px;
+  height: 7px;
+  border-right: 0.7px solid #fff;
+  border-bottom: 0.7px solid #fff;
+  transform: translateX(-50%) rotate(45deg);
+}/* ================================
+   GOODMODEL - Interaction Concept
+================================ */
+
+.goodmodel-interaction-layout {
+  padding-top: 42px;
+  padding-bottom: 72px;
+}
+
+.goodmodel-concept-text {
+  width: 520px;
+  margin-left: 90px;
+  margin-bottom: 42px;
+}
+
+.goodmodel-concept-item {
+  width: 520px;
+  margin-left: 90px;
+  margin-bottom: 76px;
+}
+
+.goodmodel-concept-item:last-child {
+  margin-bottom: 0;
+}
+
+.goodmodel-concept-item h3 {
+  margin: 0 0 24px;
+  font-family: "Inter", "PingFang TC", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+.goodmodel-concept-item .goodmodel-concept-text {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+/* ================================
+   GOODMODEL - Interaction Concept
+================================ */
+
+.goodmodel-interaction-layout {
+  padding-top: 42px;
+  padding-bottom: 72px;
+}
+
+.goodmodel-concept-text {
+  width: 520px;
+  margin-left: 90px;
+  margin-bottom: 42px;
+}
+
+.goodmodel-concept-text.in-item {
+  width: 100%;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.goodmodel-concept-item {
+  width: 520px;
+  margin-left: 90px;
+  margin-bottom: 76px;
+}
+
+.goodmodel-concept-item:last-child {
+  margin-bottom: 0;
+}
+
+.goodmodel-concept-item h3 {
+  margin: 0 0 24px;
+  font-family: "Inter", "PingFang TC", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+/* 兩張並列 */
+.goodmodel-media-pair {
+  width: 100%;
+  margin: 0 0 36px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* 單張置中 */
+.goodmodel-media-single {
+  width: 100%;
+  margin: 0 0 36px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 通用裁切框 */
+.goodmodel-crop {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* 通用圖片定位 */
+.goodmodel-crop-img {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  display: block;
+}
+
+/* =========================
+   01
+========================= */
+.step01-gif-crop {
+  width: 200px;
+  height: 285px;
+}
+.step01-gif-img {
+  width: 350px;
+  transform: translate(-50%, -50%);
+}
+
+.step01-gate-crop {
+  width: 250px;
+  height: 285px;
+}
+.step01-gate-img {
+  width: 255px;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   02
+========================= */
+.step02-makeup-crop {
+  width: 650px;
+  height: 360px;
+}
+.step02-makeup-img {
+  width: 430px;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   03
+========================= */
+.step03-textfill-gif-crop {
+  width: 210px;
+  height: 290px;
+}
+.step03-textfill-gif-img {
+  width: 350px;
+  transform: translate(-50%, -50%);
+}
+
+.step03-textfill-img-crop {
+  width: 210px;
+  height: 290px;
+}
+.step03-textfill-img {
+  width: 250px;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   04
+========================= */
+.step04-bad-gif-crop {
+  width: 210px;
+  height: 300px;
+}
+.step04-bad-gif-img {
+  width: 350px;
+  transform: translate(-50%, -50%);
+}
+
+.step04-face-crop {
+  width: 220px;
+  height: 300px;
+}
+.step04-face-img {
+  width: 200px;
+  transform: translate(-50%, -50%);
+}
+
+/* =========================
+   05
+========================= */
+.step05-paper-gif-crop {
+  width: 210px;
+  height: 290px;
+}
+.step05-paper-gif-img {
+  width: 350px;
+  transform: translate(-50%, -50%);
+}
+
+.step05-paper-img-crop {
+  width: 210px;
+  height: 290px;
+}
+.step05-paper-img {
+  width: 200px;
+  transform: translate(-50%, -50%);
+}
+/* Site photos */
+.goodmodel-site-section {
+  padding-bottom: 0;
+}
+
+.goodmodel-site-photos {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 24px;
+}
+
+.goodmodel-site-photos img {
+  width: 100%;
+  display: block;
+}
+
+/* Open animation */
+.goodmodel-modal.is-open .goodmodel-page {
+  animation: goodmodelPageIn 0.28s ease;
+}
+
+@keyframes goodmodelPageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* RWD */
+@media (max-width: 760px) {
+  .goodmodel-page {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .goodmodel-close {
+    left: calc(100% - 40px);
+  }
+
+  .goodmodel-block.goodmodel-grid-bg::before {
+    background-position:
+      24px 0,
+      120px 0,
+      50% 0,
+      calc(100% - 24px) 0,
+      calc(100% - 8px) 0;
+  }
+
+  .goodmodel-title-wrap h2 {
+    padding-left: 24px;
+    font-size: 44px;
+  }
+
+  .goodmodel-small-title-wrap h2 {
+    padding-left: 24px;
+  }
+
+  .goodmodel-text-col,
+  .goodmodel-flow-step,
+  .goodmodel-concept-text,
+  .goodmodel-gif-pair {
+    width: calc(100% - 88px);
+    margin-left: 44px;
+  }
+
+  .goodmodel-flow-imgs,
+  .goodmodel-gif-pair {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .goodmodel-flow-imgs img {
+    width: min(220px, 100%);
+    justify-self: center;
+  }
+
+  .goodmodel-flow-arrow {
+    margin-left: 50%;
+  }
+}
