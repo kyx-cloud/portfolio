@@ -1524,82 +1524,6 @@ margin-top: 170px;
 }
 
 /* ================================
-   RWD
-================================ */
-
-@media (max-width: 760px) {
-  .food-page {
-    top: 0;
-    width: 100%;
-    height: 100vh;
-  }
-
-  .food-close {
-    left: calc(100% - 40px);
-  }
-
-  .food-block.grid-bg::before {
-    background-position:
-      24px 0,
-      120px 0,
-      50% 0,
-      calc(100% - 24px) 0;
-  }
-
-  .food-title-wrap h2 {
-    padding-left: 24px;
-    font-size: 44px;
-  }
-
-  .food-text-col,
-  .food-image-col,
-  .food-color-img,
-  .food-items-img,
-  .food-type-col,
-  .food-flow-map {
-    width: calc(100% - 88px);
-    margin-left: 44px;
-  }
-
-  .food-gif-step,
-  .key-screen-row {
-    width: calc(100% - 88px);
-    margin-left: 44px;
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-  }
-
-  .food-gif-step img,
-  .key-screen-img img,
-  .key-screen-large .key-screen-img img {
-    width: min(260px, 100%);
-  }
-
-  .food-flow-orange-line {
-    margin-left: 50%;
-  }
-  .userflow-step {
-    width: calc(100% - 88px);
-    margin-left: 44px;
-  }
-
-  .userflow-phones.two-phone {
-    gap: 16px;
-  }
-
-  .userflow-phones img {
-    width: min(140px, 42vw);
-  }
-
-  .userflow-phones.one-phone img {
-    width: min(160px, 48vw);
-  }
-
-  .userflow-line {
-    margin-left: 50%;
-  }
-}
-/* ================================
    IF MUSIC REMEMBERS CASE STUDY MODAL
 ================================ */
 
@@ -1991,61 +1915,6 @@ margin-top: 170px;
   }
 }
 
-/* RWD */
-@media (max-width: 760px) {
-  .music-page {
-    top: 0;
-    width: 100%;
-    height: 100vh;
-  }
-
-  .music-close {
-    left: calc(100% - 40px);
-  }
-
-  .music-block.music-grid-bg::before {
-    background-position:
-      24px 0,
-      120px 0,
-      50% 0,
-      calc(100% - 24px) 0,
-      calc(100% - 8px) 0;
-  }
-
-  .music-title-wrap h2 {
-    padding-left: 24px;
-    font-size: 38px;
-  }
-
-  .music-text-col {
-    width: calc(100% - 88px);
-    margin-left: 44px;
-  }
-
-  .music-overview-img,
-  .music-concept-img {
-    width: 180px;
-    margin-left: 44px;
-    margin-bottom: 24px;
-  }
-
-  .music-visual-scene {
-    height: 460px;
-  }
-
-  .music-visual-text {
-    top: 36px;
-    left: 24px;
-    width: 240px;
-  }
-
-  .music-computer-gif,
-  .music-player-gif {
-    width: 420px;
-    right: -80px;
-    bottom: 40px;
-  }
-}
 /* Visual Direction 最下面補的區塊 */
 .scene-computer-final {
   background-image: url("music/bg.png");
@@ -3062,59 +2931,7 @@ margin-top: 170px;
   }
 }
 
-/* RWD */
-@media (max-width: 760px) {
-  .goodmodel-page {
-    top: 0;
-    width: 100%;
-    height: 100vh;
-  }
 
-  .goodmodel-close {
-    left: calc(100% - 40px);
-  }
-
-  .goodmodel-block.goodmodel-grid-bg::before {
-    background-position:
-      24px 0,
-      120px 0,
-      50% 0,
-      calc(100% - 24px) 0,
-      calc(100% - 8px) 0;
-  }
-
-  .goodmodel-title-wrap h2 {
-    padding-left: 24px;
-    font-size: 44px;
-  }
-
-  .goodmodel-small-title-wrap h2 {
-    padding-left: 24px;
-  }
-
-  .goodmodel-text-col,
-  .goodmodel-flow-step,
-  .goodmodel-concept-text,
-  .goodmodel-gif-pair {
-    width: calc(100% - 88px);
-    margin-left: 44px;
-  }
-
-  .goodmodel-flow-imgs,
-  .goodmodel-gif-pair {
-    grid-template-columns: 1fr;
-    display: grid;
-  }
-
-  .goodmodel-flow-imgs img {
-    width: min(220px, 100%);
-    justify-self: center;
-  }
-
-  .goodmodel-flow-arrow {
-    margin-left: 50%;
-  }
-}
 /* ================================
    INTRO LOADER
 ================================ */
@@ -3216,4 +3033,1111 @@ article {
 .custom-cursor.is-hover {
   width: 22px;
   height: 22px;
+}
+/* =========================================================
+   MOBILE RWD 統整版
+   貼在整份 CSS 最底部
+   適用寬度：手機 / 小平板
+========================================================= */
+
+@media (max-width: 760px) {
+
+  /* =========================
+     全域
+  ========================= */
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+
+  html,
+  body,
+  a,
+  button,
+  article {
+    cursor: auto;
+  }
+
+  .reveal {
+    transform: translateY(36px);
+  }
+  .floating-cube {
+    width: 540px !important;
+    height: 540px !important;
+    top: 58% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .floating-cube canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* =========================
+     NAV
+  ========================= */
+
+  .nav {
+    height: 44px;
+    padding: 0 14px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    z-index: 9999;
+  }
+
+  .nav-logo {
+    font-size: 18px;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .nav-links a::before {
+    width: 8px;
+    height: 8px;
+  }
+
+  #langBtn {
+    font-size: 11px;
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+
+  .hero {
+    height: 680px;
+    overflow: hidden;
+  }
+ 
+ 
+  .hero-grid {
+    background-position:
+      16px 0,
+      24% 0,
+      50% 0,
+      76% 0,
+      calc(100% - 16px) 0;
+  }
+
+  .hero-top-lines {
+    top: 120px;
+  }
+
+  .hero h1.hero-title {
+    top: 185px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    font-size: 82px !important;
+    line-height: 0.9 !important;
+    letter-spacing: 0.01em !important;
+
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+
+  .hero-quote {
+    top: 240px;
+    width: calc(100% - 44px);
+    font-size: 13px;
+    line-height: 7;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hero-title-lines {
+    top: 280px;
+  }
+
+  .hero-meta {
+    top: 315px;
+    left: 24px;
+    right: 24px;
+    display: block;
+    font-size: 12px;
+    line-height: 1.8;
+    opacity: 0.65;
+  }
+
+  .hero-bottom-meta {
+    left: 16px;
+    right: 16px;
+    bottom: 92px;
+    font-size: 12px;
+  }
+
+  
+
+  body.intro-playing .floating-cube {
+    pointer-events: none;
+  }
+
+  /* =========================
+     LINE GROUP
+  ========================= */
+
+  .line-group span:nth-child(1),
+  .hero-top-lines span:nth-child(1),
+  .hero-title-lines span:nth-child(1) {
+    height: 5px;
+    margin-bottom: 28px;
+  }
+
+  .line-group span:nth-child(2),
+  .hero-top-lines span:nth-child(2),
+  .hero-title-lines span:nth-child(2) {
+    height: 2px;
+    margin-bottom: 22px;
+  }
+
+  .line-group span:nth-child(3),
+  .hero-top-lines span:nth-child(3),
+  .hero-title-lines span:nth-child(3) {
+    height: 1px;
+  }
+
+  /* =========================
+     ABOUT
+  ========================= */
+
+  .about {
+    min-height: auto;
+    height: auto;
+    padding-top: 44px;
+    padding-bottom: 80px;
+  }
+
+  .about-intro {
+    display: block;
+    padding: 0 18px 36px;
+  }
+
+  .about-intro h3 {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+
+  .about-intro p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .about-photo {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 46vw;
+    max-width: 190px;
+    margin: 34px 0 0 18px;
+  }
+
+  .about-role {
+    margin: 28px 18px 0 0;
+    padding: 0;
+    font-size: 28px;
+    line-height: 1.4;
+  }
+
+  .about h2 {
+    margin-top: 84px;
+    padding-left: 18px;
+    font-size: clamp(54px, 18vw, 86px);
+    line-height: 0.85;
+  }
+
+  .work-title {
+    padding: 26px 18px 8px;
+    font-size: 13px;
+  }
+
+  .experience {
+    display: block;
+    padding: 32px 18px 0;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .experience > div,
+  .experience > p2 {
+    display: block;
+    margin: 0 0 22px;
+  }
+
+  .experience h4,
+  .experience p {
+    margin-left: 0;
+    font-size: 13px;
+  }
+
+  .experience p2 {
+    margin-left: 0;
+    text-align: left;
+    opacity: 0.6;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .experience h4:hover,
+  .experience p:hover,
+  .skill-list div:hover,
+  .skill-list p:hover {
+    margin-left: 0;
+  }
+
+  /* =========================
+     SKILL
+  ========================= */
+
+  .skill {
+    min-height: auto;
+    padding-top: 56px;
+    padding-bottom: 90px;
+  }
+
+  .skill h2 {
+    margin: 0;
+    padding-left: 18px;
+    text-align: left;
+    font-size: clamp(64px, 22vw, 98px);
+    line-height: 0.82;
+  }
+
+  .skill-sub {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 26px 18px 0;
+    text-align: right;
+    font-size: 22px;
+  }
+
+  .skill-content {
+    min-height: auto;
+  }
+
+  .skill-list {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    padding: 42px 18px 0;
+    font-size: 13px;
+  }
+
+  .skill-list div {
+    display: grid;
+    grid-template-columns: 36% 64%;
+    column-gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .skill-list p {
+    margin: 0;
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  /* =========================
+     PROJECTS
+  ========================= */
+
+  .projects {
+    height: auto;
+    min-height: auto;
+    padding-top: 56px;
+    padding-bottom: 96px;
+  }
+
+  .projects-head {
+    display: block;
+    padding: 0 18px 16px;
+  }
+
+  .projects-head div {
+    margin: 0 0 18px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .projects h2 {
+    margin: 0;
+    text-align: right;
+    font-size: clamp(64px, 22vw, 98px);
+    line-height: 0.8;
+  }
+
+  .project-grid {
+    display: block;
+    padding: 38px 18px 0;
+  }
+
+  .project-grid article {
+    width: 100%;
+    margin-bottom: 72px;
+    font-size: 13px;
+  }
+
+  .project-grid article img {
+    width: 70%;
+    height: auto;
+    padding: 8px;
+    margin: 0 auto;
+    margin-bottom: 18px;
+  }
+
+  .project-thumb {
+    width: 100%;
+    height: 270px;
+    padding: 8px;
+    margin-bottom: 18px;
+  }
+
+  .project-thumb::after {
+    inset: 8px;
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+  }
+
+  .project-grid article h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .project-grid article p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .project-hover-text {
+    font-size: 11px;
+    padding: 9px 14px;
+  }
+
+  .project-live-link {
+    font-size: 11px;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+
+  .project-card-hover:hover h3,
+  .project-card-hover:hover p,
+  .project-card-hover:hover span {
+    transform: none;
+  }
+
+  /* =========================
+     GRAPHIC
+  ========================= */
+
+  .graphic {
+    min-height: auto;
+    padding-top: 56px;
+    padding-bottom: 90px;
+  }
+
+  .graphic h2 {
+    padding-left: 18px;
+    font-size: clamp(58px, 19vw, 88px);
+    line-height: 0.9;
+  }
+
+  .graphic-sub {
+    position: relative;
+    right: auto;
+    top: auto;
+    margin: 26px 18px 0;
+    text-align: right;
+    font-size: 22px;
+  }
+
+  .graphic-grid {
+    min-height: auto;
+    padding: 58px 18px 0;
+  }
+
+  .graphic article,
+  .g1,
+  .g2,
+  .g3,
+  .g4 {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    text-align: left;
+    margin: 0 0 72px;
+    font-size: 13px;
+  }
+
+  .graphic article h3 {
+    font-size: 22px;
+  }
+
+  .graphic article p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .cube-graphic-1,
+  .cube-graphic-2,
+  .cube-about,
+  .cube-skill {
+    display: none;
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  .footer {
+    display: block;
+    min-height: auto;
+    padding: 42px 18px 160px;
+    font-size: 13px;
+  }
+
+  .footer > div {
+    margin-bottom: 30px;
+  }
+
+  .footer h4 {
+    font-size: 14px;
+  }
+
+  .footer p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .footer h2 {
+    position: absolute;
+    right: 18px;
+    bottom: 26px;
+    margin: 0;
+    font-size: clamp(44px, 16vw, 76px);
+    line-height: 0.85;
+  }
+
+  /* =========================
+     INTRO LOADER
+  ========================= */
+
+  .intro-text {
+    top: 52%;
+    font-size: 12px;
+  }
+
+  .intro-left {
+    left: 16px;
+  }
+
+  .intro-right {
+    right: 16px;
+  }
+
+  .intro-bottom {
+    bottom: 28px;
+    width: calc(100% - 60px);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* =========================
+     ALL CASE STUDY MODALS
+     food / music / mochi / goodmodel 共用
+  ========================= */
+
+  .food-page,
+  .music-page,
+  .mochi-page,
+  .goodmodel-page {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .food-close,
+  .music-close,
+  .mochi-close,
+  .goodmodel-close {
+    position: sticky;
+    top: 10px;
+    left: calc(100% - 42px);
+    width: 30px;
+    height: 30px;
+    z-index: 50;
+  }
+
+  .food-title-wrap h2,
+  .music-title-wrap h2,
+  .mochi-title-wrap h2,
+  .goodmodel-title-wrap h2,
+  .goodmodel-small-title-wrap h2 {
+    padding-left: 24px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .food-title-wrap,
+  .music-title-wrap,
+  .mochi-title-wrap,
+  .goodmodel-title-wrap,
+  .goodmodel-small-title-wrap {
+    padding-top: 44px;
+  }
+
+  .food-title-lines .line-1,
+  .music-title-lines .line-1,
+  .mochi-title-lines .line-1,
+  .goodmodel-title-lines .line-1 {
+    height: 5px;
+    margin-bottom: 30px;
+  }
+
+  .food-title-lines .line-2,
+  .music-title-lines .line-2,
+  .mochi-title-lines .line-2,
+  .goodmodel-title-lines .line-2 {
+    height: 2px;
+    margin-bottom: 24px;
+  }
+
+  .food-title-lines .line-3,
+  .music-title-lines .line-3,
+  .mochi-title-lines .line-3,
+  .goodmodel-title-lines .line-3 {
+    height: 1px;
+  }
+
+  .food-block.grid-bg::before,
+  .music-block.music-grid-bg::before,
+  .mochi-block.mochi-grid-bg::before,
+  .goodmodel-block.goodmodel-grid-bg::before {
+    background-position:
+      18px 0,
+      25% 0,
+      50% 0,
+      75% 0,
+      calc(100% - 18px) 0;
+  }
+
+  .food-block-inner,
+  .music-block-inner,
+  .mochi-block-inner,
+  .goodmodel-block-inner {
+    padding-top: 36px;
+    min-height: auto;
+  }
+
+  .food-text-col,
+  .music-text-col,
+  .mochi-text-col,
+  .goodmodel-text-col,
+  .goodmodel-concept-text {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .food-zh,
+  .music-zh,
+  .mochi-zh,
+  .goodmodel-zh {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .food-en,
+  .music-en,
+  .mochi-en,
+  .goodmodel-en {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  /* =========================
+     FOOD MODAL
+  ========================= */
+
+  .food-image-col,
+  .food-color-img,
+  .food-items-img,
+  .food-type-col,
+  .food-flow-map {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .food-image-col img,
+  .food-color-img img,
+  .food-items-img img,
+  .food-flow-map img {
+    width: 100%;
+  }
+
+  .type-row {
+    grid-template-columns: 68px 1fr;
+  }
+
+  .userflow-step {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .userflow-step > p {
+    margin-left: 0;
+  }
+
+  .userflow-phones {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .userflow-phones.two-phone {
+    gap: 14px;
+  }
+
+  .phone-crop {
+    width: 130px;
+    height: 260px;
+  }
+
+  .phone-crop img {
+    width: 520px;
+  }
+
+  .phone-crop2 {
+    width: 170px;
+    height: 260px;
+    margin-left: 0;
+  }
+
+  .phone-crop2 img {
+    width: 520px;
+  }
+
+  .phone-c {
+    width: 130px;
+    height: 260px;
+  }
+
+  .userflow-line {
+    margin: 34px auto 54px;
+  }
+
+  .key-screen-row {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .key-screen-text,
+  .key-screen-img,
+  .key-screen2-img,
+  .key-screen-test {
+    width: 100%;
+  }
+
+  .key-screen-img img,
+  .key-screen2-img img,
+  .key-screen-test img {
+    width: min(260px, 100%);
+    margin-left: 0;
+  }
+
+  .food-ad-img img {
+    width: 100%;
+  }
+
+  /* =========================
+     MUSIC MODAL
+  ========================= */
+
+  .music-overview-layout,
+  .music-concept-layout {
+    display: flex;
+    margin-left: 0;
+    padding-top: 36px;
+    min-height: auto;
+  }
+
+  .music-overview-img{
+    width: min(600px, calc(100% - 20px));
+    margin-top: 60px;
+  
+  }
+  .music-concept-img {
+    width: min(200px, calc(100% - 56px));
+    margin-left: 28px;
+ 
+  }
+ 
+  .scene-player {
+    background-size: cover;
+  }
+  .music-text-col {
+    width: calc(100% - 56px) !important;
+  }
+
+  .music-overview-text,
+  .music-concept-text {
+    width: calc(100% - 56px) !important;
+    margin-left: 28px !important;
+    margin-right: 28px !important;
+  }
+  
+ 
+  .music-zh,
+  .music-en {
+    max-width: none !important;
+  }
+  .music-visual-block {
+    padding-bottom: 0 !important;
+  }
+
+  /* 第一段：computer bg */
+  .scene-computer {
+    height: 480px !important;
+    min-height: 500px !important;
+    margin-top: 0 !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+  }
+
+  /* 第二段：player bg2，這段本來就要比較長 */
+  .scene-player {
+    height: 600px !important;
+    min-height: 800px !important;
+    margin-top: 0 !important;
+margin-bottom: 0px;
+    background-size: 125% auto !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+  }
+
+  /* 第三段：final computer，不要跟第二段有空白 */
+  .scene-computer-final {
+    height: 520px !important;
+    min-height: 520px !important;
+    margin-top: -1px !important;
+    padding-top: 0 !important;
+
+    background-image: url("music/bg.png") !important;
+    background-size: 165% auto !important;
+    background-position: center -105px !important;
+    background-repeat: no-repeat !important;
+    background-color: #f5f6f6 !important;
+  }
+
+  /* 三個區塊彼此不要有奇怪間距 */
+  .music-visual-scene + .music-visual-scene {
+    margin-top: 0 !important;
+  }
+
+  /* 這個區塊文字單獨寬度，不跟一般 music-text-col 綁一起 */
+  .music-visual-text {
+    top: 60px !important;
+    left: 24px !important;
+    width: 300px !important;
+    margin-left: 0 !important;
+  }
+
+  .music-visual-text .music-en,
+  .music-visual-text .music-zh {
+    max-width: none !important;
+    width: 100% !important;
+    font-size: 12px !important;
+    line-height: 1.75 !important;
+  }
+
+  /* final 區塊的文字也單獨設定 */
+  .scene-computer-final .music-visual-text {
+    top: 34px !important;
+    left: 24px !important;
+    width: 600px !important;
+    margin-left: 0 !important;
+  }
+
+  .scene-computer-final .music-visual-text .music-en,
+  .scene-computer-final .music-visual-text .music-zh {
+    max-width: none !important;
+    width: 100% !important;
+    font-size: 12px !important;
+    margin-top: 20px;
+    line-height: 1.75 !important;
+  }
+
+  /* 第一個 computer gif：不要被 max-width 壓成小條 */
+  .music-computer-gif {
+    width: 710px !important;
+    max-width: none !important;
+    right: -150px !important;
+    bottom: -3px !important;
+  }
+
+  /* 第二個 player gif */
+  .music-player-gif {
+    width: 390px !important;
+    max-width: none !important;
+    right: -10px !important;
+    bottom: 20px !important;
+  }
+
+  /* final computer png */
+  .music-computer-final-png {
+    width: 88% !important;
+    max-width: none !important;
+    left: 50% !important;
+    bottom: 4px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* 避免全域手機 img 限制把這三張壓壞 */
+  .music-computer-gif,
+  .music-player-gif,
+  .music-computer-final-png {
+    height: auto !important;
+    display: block !important;
+  }
+  /* =========================
+     MOCHI MODAL
+  ========================= */
+
+  .mochi-page-list {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .mochi-page-item {
+    grid-template-columns: 24px 1fr;
+  }
+
+  .mochi-page-arrow {
+    margin-left: 9px;
+  }
+
+  .mochi-visual-img {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .mochi-interface-row,
+  .mochi-interface-row2,
+  .mochi-interface-row3,
+  .mochi-interface-row4 {
+    width: calc(100% - 56px);
+    height: auto;
+    margin-left: 28px;
+    margin-top: 0;
+    margin-bottom: 56px;
+    display: block;
+  }
+
+  .mochi-interface-text,
+  .mochi-interface-text2,
+  .mochi-interface-text3,
+  .mochi-interface-text4 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .mochi-interface-row img,
+  .mochi-interface-row2 img,
+  .mochi-interface-row3 img,
+  .mochi-interface-row4 img,
+  .mochi-interface-row4.image-only img {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* =========================
+     GOODMODEL MODAL
+  ========================= */
+
+  .goodmodel-flow-step {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .goodmodel-flow-imgs {
+    display: block;
+  }
+
+  .goodmodel-flow-imgs img {
+    width: 100%;
+    max-width: 360px;
+    margin: 20px auto 0;
+  }
+
+  .goodmodel-flow-arrow {
+    margin: 28px auto 56px;
+  }
+
+  .goodmodel-concept-item {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+  }
+
+  .goodmodel-concept-item h3 {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .goodmodel-media-pair {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .goodmodel-media-single {
+    justify-content: center;
+  }
+
+  .goodmodel-crop {
+    max-width: 100%;
+  }
+
+  .step01-gif-crop,
+  .step01-gate-crop,
+  .step03-textfill-gif-crop,
+  .step03-textfill-img-crop,
+  .step04-bad-gif-crop,
+  .step04-face-crop,
+  .step05-paper-gif-crop,
+  .step05-paper-img-crop {
+    width: 46%;
+    height: 250px;
+  }
+
+  .step02-makeup-crop {
+    width: 100%;
+    max-width: 360px;
+    height: 260px;
+  }
+
+  .step01-gif-img,
+  .step03-textfill-gif-img,
+  .step04-bad-gif-img,
+  .step05-paper-gif-img {
+    width: 310px;
+  }
+
+  .step01-gate-img,
+  .step03-textfill-img,
+  .step04-face-img,
+  .step05-paper-img {
+    width: 230px;
+  }
+
+  .step02-makeup-img {
+    width: 360px;
+  }
+
+  .goodmodel-site-photos img {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .nav-links {
+    gap: 9px;
+  }
+
+  .nav-links a {
+    font-size: 9px;
+  }
+
+  .nav-logo {
+    font-size: 16px;
+  }
+
+  .hero {
+    height: 620px;
+  }
+
+  .hero-title {
+    font-size: clamp(56px, 21vw, 92px);
+  }
+
+  .floating-cube {
+    width: 280px;
+    height: 280px;
+  }
+
+  .project-thumb {
+    height: 230px;
+  }
+
+  .food-title-wrap h2,
+  .music-title-wrap h2,
+  .mochi-title-wrap h2,
+  .goodmodel-title-wrap h2,
+  .goodmodel-small-title-wrap h2 {
+    font-size: 34px;
+  }
+
+  .step01-gif-crop,
+  .step01-gate-crop,
+  .step03-textfill-gif-crop,
+  .step03-textfill-img-crop,
+  .step04-bad-gif-crop,
+  .step04-face-crop,
+  .step05-paper-gif-crop,
+  .step05-paper-img-crop {
+    width: 100%;
+    height: 250px;
+  }
+
+  .goodmodel-media-pair {
+    display: block;
+  }
+
+  .goodmodel-media-pair .goodmodel-crop {
+    margin: 0 auto 18px;
+  }
+
+  .footer h2 {
+    font-size: 48px;
+  }
 }
