@@ -387,3 +387,276 @@ window.addEventListener("keydown", (e) => {
     }
   });
 })();
+/* ================================
+   INTRO ANIMATION
+================================ */
+
+function playIntroAnimation() {
+  const intro = document.querySelector("#introLoader");
+  const heroCube = document.querySelector("#heroCube");
+
+  if (!intro || !heroCube || typeof gsap === "undefined") return;
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: "power3.out"
+    },
+    onComplete: () => {
+      document.body.classList.remove("intro-playing");
+      intro.remove();
+    }
+  });
+
+  // 一開始：3D 物件在畫面中央、小一點
+  gsap.set(heroCube, {
+    position: "fixed",
+    left: "50%",
+    top: "50%",
+    width: 160,
+    height: 160,
+    xPercent: -50,
+    yPercent: -50,
+    scale: 1.6,
+    opacity: 0
+  });
+
+  gsap.set([".intro-left", ".intro-right", ".intro-bottom"], {
+    opacity: 0,
+    y: 12
+  });
+
+  // 動畫流程
+  tl
+    // 文字淡入
+    .to([".intro-left", ".intro-right"], {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.08
+    })
+
+    .to(".intro-bottom", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8
+    }, "-=0.45")
+
+    // 中間 3D 出現
+    .to(heroCube, {
+      opacity: 1,
+      duration: 0.9
+    }, "-=0.5")
+
+    // 停一下，讓它旋轉展示
+    .to({}, {
+      duration: 1.2
+    })
+
+    // 3D 放大，準備進入首頁
+    .to(heroCube, {
+      width: 600,
+      height: 600,
+      top: "60%",
+      duration: 1.15,
+      ease: "power4.inOut"
+    })
+
+    // 白色 intro 畫面淡出
+    .to(intro, {
+      opacity: 0,
+      duration: 0.75,
+      ease: "power2.out"
+    }, "-=0.45");
+}
+
+window.addEventListener("load", playIntroAnimation);
+/* ================================
+   CUSTOM CURSOR + HERO INK TRAIL
+================================ */
+
+(() => {
+  const cursor = document.querySelector("#customCursor");
+  const hero = document.querySelector(".hero");
+  const canvas = document.querySelector("#heroInkCanvas");
+
+  if (!cursor || !hero || !canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  let dpr = window.devicePixelRatio || 1;
+  let particles = [];
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+
+  let lastHeroX = 0;
+  let lastHeroY = 0;
+  let isInHero = false;
+
+  function resizeCanvas() {
+    const rect = hero.getBoundingClientRect();
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function addInkParticles(x, y, speed = 1) {
+    const count = Math.min(7, 3 + Math.floor(speed * 0.45));
+
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 34;
+
+      particles.push({
+        x: x + Math.cos(angle) * distance,
+        y: y + Math.sin(angle) * distance,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        radius: 46 + Math.random() * 96,
+        life: 1,
+        decay: 0.018 + Math.random() * 0.012,
+        wobble: Math.random() * Math.PI * 2,
+        points: 7 + Math.floor(Math.random() * 5)
+      });
+    }
+  }
+  function drawInkShape(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.wobble);
+  
+    const pts = [];
+  
+    for (let i = 0; i < p.points; i++) {
+      const angle = (i / p.points) * Math.PI * 2;
+  
+      const noise =
+        0.82 +
+        Math.sin(angle * 2.2 + p.wobble) * 0.08 +
+        Math.cos(angle * 3.4 - p.wobble) * 0.06;
+  
+      const r = p.radius * noise * (0.88 + p.life * 0.12);
+  
+      pts.push({
+        x: Math.cos(angle) * r,
+        y: Math.sin(angle) * r
+      });
+    }
+  
+    ctx.beginPath();
+  
+    const first = pts[0];
+    const second = pts[1];
+  
+    ctx.moveTo(
+      (first.x + second.x) / 2,
+      (first.y + second.y) / 2
+    );
+  
+    for (let i = 1; i < pts.length; i++) {
+      const current = pts[i];
+      const next = pts[(i + 1) % pts.length];
+  
+      const midX = (current.x + next.x) / 2;
+      const midY = (current.y + next.y) / 2;
+  
+      ctx.quadraticCurveTo(current.x, current.y, midX, midY);
+    }
+  
+    ctx.closePath();
+  
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.98 * Math.max(p.life, 0.72)})`;
+    ctx.fill();
+  
+    ctx.restore();
+  }
+  function animate() {
+    cursorX += (mouseX - cursorX) * 0.3;
+    cursorY += (mouseY - cursorY) * 0.3;
+
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.radius *= 0.995;
+      p.life -= p.decay;
+      p.wobble += 0.01;
+
+      drawInkShape(p);
+    });
+
+    particles = particles.filter((p) => p.life > 0);
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    const rect = hero.getBoundingClientRect();
+
+    const insideHero =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+
+    if (insideHero) {
+      const heroX = e.clientX - rect.left;
+      const heroY = e.clientY - rect.top;
+
+      const dx = heroX - lastHeroX;
+      const dy = heroY - lastHeroY;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+
+      if (!isInHero || speed > 4) {
+        addInkParticles(heroX, heroY, speed);
+      }
+
+      lastHeroX = heroX;
+      lastHeroY = heroY;
+      isInHero = true;
+    } else {
+      isInHero = false;
+    }
+  });
+
+  const hoverTargets = document.querySelectorAll(
+    "a, button, article, [data-open-goodmodel], [data-open-music], [data-open-mochi], [data-open-food]"
+  );
+
+  hoverTargets.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("is-hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("is-hover");
+    });
+  });
+
+  document.addEventListener("mouseleave", () => {
+    cursor.style.opacity = "0";
+  });
+
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1";
+  });
+
+  window.addEventListener("resize", resizeCanvas);
+
+  resizeCanvas();
+  animate();
+})();
