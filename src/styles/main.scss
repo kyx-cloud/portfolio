@@ -1027,6 +1027,106 @@ margin-top: 170px;
   transform: translateY(70px);
 }
 
+/* ================================
+   CUSTOM DIAMOND CURSOR
+================================ */
+
+html,
+body,
+a,
+button,
+article {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  z-index: 999999;
+  pointer-events: none;
+  background: #fff;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 1;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    opacity 0.25s ease,
+    background 0.25s ease;
+}
+
+.custom-cursor.is-hover {
+  width: 28px;
+  height: 28px;
+  background: #fff;
+}
+/* ================================
+   INTRO LOADER
+================================ */
+
+body.intro-playing {
+  overflow: hidden;
+}
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  background: #f7f7f7;
+  color: #000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.intro-text {
+  position: absolute;
+  top: 52%;
+  transform: translateY(-50%);
+  font-family: "Inter", sans-serif !important;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: #000;
+  opacity: 0;
+}
+
+.intro-left {
+  left: 22px;
+}
+
+.intro-right {
+  right: 22px;
+}
+
+.intro-bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  width: 520px;
+  text-align: center;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.04em;
+  color: #000;
+  opacity: 0;
+}
+
+body.intro-playing .floating-cube {
+  z-index: 99999 !important;
+  pointer-events: none;
+}
+
+body:not(.intro-playing) .floating-cube {
+  z-index: 1 !important;
+  pointer-events: auto;
+}
 
 @media (max-width: 760px) {
 
@@ -1075,6 +1175,25 @@ margin-top: 170px;
   .floating-cube canvas {
     width: 100% !important;
     height: 100% !important;
+  }
+  .intro-text {
+    top: 52%;
+    font-size: 12px;
+  }
+
+  .intro-left {
+    left: 16px;
+  }
+
+  .intro-right {
+    right: 16px;
+  }
+
+  .intro-bottom {
+    bottom: 28px;
+    width: calc(100% - 60px);
+    font-size: 12px;
+    line-height: 1.5;
   }
   /* =========================
      NAV

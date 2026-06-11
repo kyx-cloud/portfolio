@@ -218,22 +218,23 @@ if (mount) {
 /* ================================
    PROJECT CASE IMAGE MODAL
 ================================ */
+const basePath = import.meta.env.BASE_URL;
 
 const caseData = {
   good: {
-    src: "./images/good.jpg",
+    src: `${basePath}images/good.jpg`,
     alt: "Goodmodel project case study"
   },
   music: {
-    src: "./images/music.jpg",
+    src: `${basePath}images/music.jpg`,
     alt: "If Music Remembers project case study"
   },
   mochi: {
-    src: "./images/mochi.jpg",
+    src: `${basePath}images/mochi.jpg`,
     alt: "Mochi Mochi project case study"
   },
   food: {
-    src: "./images/food.jpg",
+    src: `${basePath}images/food.jpg`,
     alt: "Foodie Friends project case study"
   }
 };
@@ -303,8 +304,6 @@ function finishIntro() {
   document.body.classList.remove("intro-playing");
   document.body.classList.add("intro-finished");
 
-  if (intro) intro.remove();
-
   if (heroCube) {
     gsap.set(heroCube, {
       clearProps: "width,height,xPercent,yPercent,opacity"
@@ -318,17 +317,26 @@ function finishIntro() {
     });
   }
 
+  if (intro) {
+    intro.remove();
+  }
+
   ScrollTrigger.refresh();
 }
 
 function playIntroAnimation() {
   const intro = document.querySelector("#introLoader");
   const heroCube = document.querySelector("#heroCube");
+  const introTexts = document.querySelectorAll(".intro-left, .intro-right, .intro-bottom");
 
   if (!intro || !heroCube || typeof gsap === "undefined") {
     finishIntro();
     return;
   }
+
+  gsap.set(intro, {
+    autoAlpha: 1
+  });
 
   gsap.set(heroCube, {
     position: "fixed",
@@ -342,9 +350,9 @@ function playIntroAnimation() {
     opacity: 0
   });
 
-  gsap.set([".intro-left", ".intro-right", ".intro-bottom"], {
-    opacity: 0,
-    y: 12
+  gsap.set(introTexts, {
+    autoAlpha: 0,
+    y: 14
   });
 
   const tl = gsap.timeline({
@@ -356,22 +364,22 @@ function playIntroAnimation() {
 
   tl
     .to([".intro-left", ".intro-right"], {
-      opacity: 1,
+      autoAlpha: 1,
       y: 0,
-      duration: 0.8,
-      stagger: 0.08
+      duration: 0.75,
+      stagger: 0.12
     })
     .to(".intro-bottom", {
-      opacity: 1,
+      autoAlpha: 1,
       y: 0,
-      duration: 0.8
+      duration: 0.75
     }, "-=0.45")
     .to(heroCube, {
       opacity: 1,
       duration: 0.9
-    }, "-=0.5")
+    }, "-=0.45")
     .to({}, {
-      duration: 0.8
+      duration: 0.75
     })
     .to(heroCube, {
       width: 600,
@@ -380,23 +388,26 @@ function playIntroAnimation() {
       duration: 1.15,
       ease: "power4.inOut"
     })
+    .to(introTexts, {
+      autoAlpha: 0,
+      y: -12,
+      duration: 0.45,
+      stagger: 0.04
+    }, "-=0.8")
     .to(intro, {
-      opacity: 0,
+      autoAlpha: 0,
       duration: 0.75,
       ease: "power2.out"
-    }, "-=0.45");
+    }, "-=0.35");
 }
 
-// 不要用 window.load，會等全部 GIF 和圖片
 document.addEventListener("DOMContentLoaded", playIntroAnimation);
 
-// 保險：如果動畫或資源出問題，最多 7 秒強制進首頁
 setTimeout(() => {
   if (document.body.classList.contains("intro-playing")) {
     finishIntro();
   }
 }, 7000);
-
 /* ================================
    CUSTOM DIAMOND CURSOR
 ================================ */
