@@ -391,24 +391,40 @@ window.addEventListener("keydown", (e) => {
    INTRO ANIMATION
 ================================ */
 
+function finishIntro() {
+  const intro = document.querySelector("#introLoader");
+  const heroCube = document.querySelector("#heroCube");
+
+  document.body.classList.remove("intro-playing");
+  document.body.classList.add("intro-finished");
+
+  if (intro) intro.remove();
+
+  if (heroCube) {
+    gsap.set(heroCube, {
+      clearProps: "width,height,xPercent,yPercent,opacity"
+    });
+
+    gsap.set(heroCube, {
+      position: "fixed",
+      left: "78%",
+      top: "38%",
+      scale: 1.5
+    });
+  }
+
+  ScrollTrigger.refresh();
+}
+
 function playIntroAnimation() {
   const intro = document.querySelector("#introLoader");
   const heroCube = document.querySelector("#heroCube");
 
-  if (!intro || !heroCube || typeof gsap === "undefined") return;
+  if (!intro || !heroCube || typeof gsap === "undefined") {
+    finishIntro();
+    return;
+  }
 
-  const tl = gsap.timeline({
-    defaults: {
-      ease: "power3.out"
-    },
-    onComplete: () => {
-      document.body.classList.remove("intro-playing");
-      document.body.classList.add("intro-finished");
-      intro.remove();
-    }
-  });
-
-  // 一開始：3D 物件在畫面中央、小一點
   gsap.set(heroCube, {
     position: "fixed",
     left: "50%",
@@ -426,34 +442,32 @@ function playIntroAnimation() {
     y: 12
   });
 
-  // 動畫流程
+  const tl = gsap.timeline({
+    defaults: {
+      ease: "power3.out"
+    },
+    onComplete: finishIntro
+  });
+
   tl
-    // 文字淡入
     .to([".intro-left", ".intro-right"], {
       opacity: 1,
       y: 0,
       duration: 0.8,
       stagger: 0.08
     })
-
     .to(".intro-bottom", {
       opacity: 1,
       y: 0,
       duration: 0.8
     }, "-=0.45")
-
-    // 中間 3D 出現
     .to(heroCube, {
       opacity: 1,
       duration: 0.9
     }, "-=0.5")
-
-    // 停一下，讓它旋轉展示
     .to({}, {
-      duration: 1.2
+      duration: 0.8
     })
-
-    // 3D 放大，準備進入首頁
     .to(heroCube, {
       width: 600,
       height: 600,
@@ -461,8 +475,6 @@ function playIntroAnimation() {
       duration: 1.15,
       ease: "power4.inOut"
     })
-
-    // 白色 intro 畫面淡出
     .to(intro, {
       opacity: 0,
       duration: 0.75,
@@ -470,7 +482,16 @@ function playIntroAnimation() {
     }, "-=0.45");
 }
 
-window.addEventListener("load", playIntroAnimation);
+// 不要用 window.load，會等全部 GIF 和圖片
+document.addEventListener("DOMContentLoaded", playIntroAnimation);
+
+// 保險：如果動畫或資源出問題，最多 7 秒強制進首頁
+setTimeout(() => {
+  if (document.body.classList.contains("intro-playing")) {
+    finishIntro();
+  }
+}, 7000);
+
 /* ================================
    CUSTOM DIAMOND CURSOR
 ================================ */
