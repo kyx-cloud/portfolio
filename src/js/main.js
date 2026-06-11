@@ -508,22 +508,22 @@ window.addEventListener("load", playIntroAnimation);
   }
 
   function addInkParticles(x, y, speed = 1) {
-    const count = Math.min(7, 3 + Math.floor(speed * 0.45));
-
+    const count = Math.min(4, 1 + Math.floor(speed * 0.15));
+  
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 34;
-
+      const distance = Math.random() * 22;
+  
       particles.push({
         x: x + Math.cos(angle) * distance,
         y: y + Math.sin(angle) * distance,
-        vx: (Math.random() - 0.5) * 0.7,
-        vy: (Math.random() - 0.5) * 0.7,
-        radius: 46 + Math.random() * 96,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: 38 + Math.random() * 58,
         life: 1,
-        decay: 0.018 + Math.random() * 0.012,
+        decay: 0.035 + Math.random() * 0.015,
         wobble: Math.random() * Math.PI * 2,
-        points: 7 + Math.floor(Math.random() * 5)
+        points: 8 + Math.floor(Math.random() * 4)
       });
     }
   }
