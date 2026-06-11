@@ -403,6 +403,7 @@ function playIntroAnimation() {
     },
     onComplete: () => {
       document.body.classList.remove("intro-playing");
+      document.body.classList.add("intro-finished");
       intro.remove();
     }
   });
@@ -602,6 +603,7 @@ window.addEventListener("load", playIntroAnimation);
   }
 
   window.addEventListener("mousemove", (e) => {
+    if (!document.body.classList.contains("intro-finished")) return;
     mouseX = e.clientX;
     mouseY = e.clientY;
 
