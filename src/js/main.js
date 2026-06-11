@@ -472,167 +472,31 @@ function playIntroAnimation() {
 
 window.addEventListener("load", playIntroAnimation);
 /* ================================
-   CUSTOM CURSOR + HERO INK TRAIL
+   CUSTOM DIAMOND CURSOR
 ================================ */
 
 (() => {
   const cursor = document.querySelector("#customCursor");
-  const hero = document.querySelector(".hero");
-  const canvas = document.querySelector("#heroInkCanvas");
-
-  if (!cursor || !hero || !canvas) return;
-
-  const ctx = canvas.getContext("2d");
-
-  let dpr = window.devicePixelRatio || 1;
-  let particles = [];
+  if (!cursor) return;
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let cursorX = mouseX;
   let cursorY = mouseY;
 
-  let lastHeroX = 0;
-  let lastHeroY = 0;
-  let isInHero = false;
-
-  function resizeCanvas() {
-    const rect = hero.getBoundingClientRect();
-
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function addInkParticles(x, y, speed = 1) {
-    const count = Math.min(4, 1 + Math.floor(speed * 0.15));
-  
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 22;
-  
-      particles.push({
-        x: x + Math.cos(angle) * distance,
-        y: y + Math.sin(angle) * distance,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        radius: 38 + Math.random() * 58,
-        life: 1,
-        decay: 0.035 + Math.random() * 0.015,
-        wobble: Math.random() * Math.PI * 2,
-        points: 8 + Math.floor(Math.random() * 4)
-      });
-    }
-  }
-  function drawInkShape(p) {
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.wobble);
-  
-    const pts = [];
-  
-    for (let i = 0; i < p.points; i++) {
-      const angle = (i / p.points) * Math.PI * 2;
-  
-      const noise =
-        0.82 +
-        Math.sin(angle * 2.2 + p.wobble) * 0.08 +
-        Math.cos(angle * 3.4 - p.wobble) * 0.06;
-  
-      const r = p.radius * noise * (0.88 + p.life * 0.12);
-  
-      pts.push({
-        x: Math.cos(angle) * r,
-        y: Math.sin(angle) * r
-      });
-    }
-  
-    ctx.beginPath();
-  
-    const first = pts[0];
-    const second = pts[1];
-  
-    ctx.moveTo(
-      (first.x + second.x) / 2,
-      (first.y + second.y) / 2
-    );
-  
-    for (let i = 1; i < pts.length; i++) {
-      const current = pts[i];
-      const next = pts[(i + 1) % pts.length];
-  
-      const midX = (current.x + next.x) / 2;
-      const midY = (current.y + next.y) / 2;
-  
-      ctx.quadraticCurveTo(current.x, current.y, midX, midY);
-    }
-  
-    ctx.closePath();
-  
-    ctx.fillStyle = `rgba(255, 255, 255, ${0.98 * Math.max(p.life, 0.72)})`;
-    ctx.fill();
-  
-    ctx.restore();
-  }
-  function animate() {
-    cursorX += (mouseX - cursorX) * 0.3;
-    cursorY += (mouseY - cursorY) * 0.3;
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.32;
+    cursorY += (mouseY - cursorY) * 0.32;
 
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach((p) => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.radius *= 0.995;
-      p.life -= p.decay;
-      p.wobble += 0.01;
-
-      drawInkShape(p);
-    });
-
-    particles = particles.filter((p) => p.life > 0);
-
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateCursor);
   }
 
   window.addEventListener("mousemove", (e) => {
-    if (!document.body.classList.contains("intro-finished")) return;
     mouseX = e.clientX;
     mouseY = e.clientY;
-
-    const rect = hero.getBoundingClientRect();
-
-    const insideHero =
-      e.clientX >= rect.left &&
-      e.clientX <= rect.right &&
-      e.clientY >= rect.top &&
-      e.clientY <= rect.bottom;
-
-    if (insideHero) {
-      const heroX = e.clientX - rect.left;
-      const heroY = e.clientY - rect.top;
-
-      const dx = heroX - lastHeroX;
-      const dy = heroY - lastHeroY;
-      const speed = Math.sqrt(dx * dx + dy * dy);
-
-      if (!isInHero || speed > 4) {
-        addInkParticles(heroX, heroY, speed);
-      }
-
-      lastHeroX = heroX;
-      lastHeroY = heroY;
-      isInHero = true;
-    } else {
-      isInHero = false;
-    }
   });
 
   const hoverTargets = document.querySelectorAll(
@@ -657,8 +521,5 @@ window.addEventListener("load", playIntroAnimation);
     cursor.style.opacity = "1";
   });
 
-  window.addEventListener("resize", resizeCanvas);
-
-  resizeCanvas();
-  animate();
+  animateCursor();
 })();
