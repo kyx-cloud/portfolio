@@ -24,7 +24,6 @@ gsap.utils.toArray(".reveal").forEach((section) => {
 // Language switch
 const langBtn = document.getElementById("langBtn");
 let currentLang = "zh";
-
 if (langBtn) {
   langBtn.addEventListener("click", () => {
     currentLang = currentLang === "zh" ? "en" : "zh";
@@ -35,6 +34,8 @@ if (langBtn) {
 
     document.documentElement.lang = currentLang;
     langBtn.textContent = currentLang === "zh" ? "EN" : "ZH";
+
+    updateOpenedCaseImage();
   });
 }
 
@@ -222,19 +223,23 @@ const basePath = import.meta.env.BASE_URL;
 
 const caseData = {
   good: {
-    src: `${basePath}images/good.jpg`,
+    zh: `${basePath}images/good.jpg`,
+    en: `${basePath}images/good-en.jpg`,
     alt: "Goodmodel project case study"
   },
   music: {
-    src: `${basePath}images/music.jpg`,
+    zh: `${basePath}images/music.jpg`,
+    en: `${basePath}images/music-en.jpg`,
     alt: "If Music Remembers project case study"
   },
   mochi: {
-    src: `${basePath}images/mochi.jpg`,
+    zh: `${basePath}images/mochi.jpg`,
+    en: `${basePath}images/mochi-en.jpg`,
     alt: "Mochi Mochi project case study"
   },
   food: {
-    src: `${basePath}images/food.jpg`,
+    zh: `${basePath}images/food.jpg`,
+    en: `${basePath}images/food-en.jpg`,
     alt: "Foodie Friends project case study"
   }
 };
@@ -244,14 +249,15 @@ const caseModalImage = document.querySelector("#caseModalImage");
 const caseModalScroll = document.querySelector(".case-modal-scroll");
 const caseOpenBtns = document.querySelectorAll("[data-case]");
 const caseCloseBtns = document.querySelectorAll("[data-close-case]");
-
 function openCaseModal(caseName) {
   if (!caseModal || !caseModalImage) return;
 
   const targetCase = caseData[caseName];
   if (!targetCase) return;
 
-  caseModalImage.src = targetCase.src;
+  const lang = document.documentElement.lang === "en" ? "en" : "zh";
+
+  caseModalImage.src = targetCase[lang];
   caseModalImage.alt = targetCase.alt;
 
   caseModal.classList.add("is-open");
@@ -263,7 +269,19 @@ function openCaseModal(caseName) {
     caseModalScroll.scrollTop = 0;
   }
 }
+function updateOpenedCaseImage() {
+  if (!caseModal || !caseModalImage) return;
+  if (!caseModal.classList.contains("is-open")) return;
 
+  const openedCaseName = caseModal.dataset.currentCase;
+  const targetCase = caseData[openedCaseName];
+  if (!targetCase) return;
+
+  const lang = document.documentElement.lang === "en" ? "en" : "zh";
+
+  caseModalImage.src = targetCase[lang];
+  caseModalImage.alt = targetCase.alt;
+}
 function closeCaseModal() {
   if (!caseModal || !caseModalImage) return;
 
