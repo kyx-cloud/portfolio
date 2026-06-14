@@ -479,55 +479,64 @@ setTimeout(() => {
   animateCursor();
 })();
 /* ================================
-   HERO INK EFFECT - LIGHT VERSION
-   intro 結束後才啟動，避免太吃效能
+   MULTI SECTION INK EFFECT
+   Hero + Graphic 平面區水墨
 ================================ */
 
 (() => {
-  const hero = document.querySelector(".hero");
-  const canvas = document.querySelector("#heroInkCanvas");
+  const inkAreas = [
+    {
+      section: document.querySelector(".hero"),
+      canvas: document.querySelector("#heroInkCanvas")
+    },
+    {
+      section: document.querySelector(".graphic"),
+      canvas: document.querySelector("#graphicInkCanvas")
+    }
+  ].filter((item) => item.section && item.canvas);
 
-  if (!hero || !canvas) return;
+  if (inkAreas.length === 0) return;
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+  const MAX_PARTICLES = 42;
 
-  let width = 0;
-  let height = 0;
-  let dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+  const states = inkAreas
+    .map(({ section, canvas }) => {
+      const ctx = canvas.getContext("2d");
 
-  let particles = [];
-  const MAX_PARTICLES = 36;
+      return {
+        section,
+        canvas,
+        ctx,
+        width: 0,
+        height: 0,
+        particles: [],
+        lastX: null,
+        lastY: null
+      };
+    })
+    .filter((state) => state.ctx);
 
-  let lastX = null;
-  let lastY = null;
-  let isInsideHero = false;
+  function resizeCanvas(state) {
+    const rect = state.section.getBoundingClientRect();
 
-  function resizeCanvas() {
-    const rect = hero.getBoundingClientRect();
+    state.width = rect.width;
+    state.height = rect.height;
 
-    width = rect.width;
-    height = rect.height;
+    state.canvas.width = state.width * dpr;
+    state.canvas.height = state.height * dpr;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    state.canvas.style.width = `${state.width}px`;
+    state.canvas.style.height = `${state.height}px`;
 
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    state.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function getHeroPoint(e) {
-    const rect = hero.getBoundingClientRect();
-
-    return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    };
+  function resizeAll() {
+    states.forEach(resizeCanvas);
   }
 
-  function addInk(x, y, speed) {
+  function addInk(state, x, y, speed) {
     if (!document.body.classList.contains("intro-finished")) return;
     if (window.innerWidth <= 760) return;
 
@@ -537,25 +546,30 @@ setTimeout(() => {
       const angle = Math.random() * Math.PI * 2;
       const distance = Math.random() * 24;
 
-      particles.push({
+      state.particles.push({
         x: x + Math.cos(angle) * distance,
         y: y + Math.sin(angle) * distance,
         vx: (Math.random() - 0.5) * 0.45,
         vy: (Math.random() - 0.5) * 0.45,
-        radius: 34 + Math.random() * 58,
+        radius: 48 + Math.random() * 72,
         life: 1,
+
+        // 數字越小，水墨停留越久
         decay: 0.014 + Math.random() * 0.008,
+
         wobble: Math.random() * Math.PI * 2,
         points: 9 + Math.floor(Math.random() * 4)
       });
     }
 
-    if (particles.length > MAX_PARTICLES) {
-      particles.splice(0, particles.length - MAX_PARTICLES);
+    if (state.particles.length > MAX_PARTICLES) {
+      state.particles.splice(0, state.particles.length - MAX_PARTICLES);
     }
   }
 
-  function drawInkShape(p) {
+  function drawInkShape(state, p) {
+    const ctx = state.ctx;
+
     ctx.save();
     ctx.translate(p.x, p.y);
     ctx.rotate(p.wobble);
@@ -600,69 +614,78 @@ setTimeout(() => {
 
     ctx.closePath();
 
-    ctx.fillStyle = `rgba(255, 255, 255, ${0.95 * Math.max(p.life, 0.97)})`;
+    // 透明度 0.98：比較實，但還保留一點水墨感
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.98 * Math.max(p.life, 0.9)})`;
     ctx.fill();
 
     ctx.restore();
   }
 
   function animateInk() {
-    ctx.clearRect(0, 0, width, height);
+    states.forEach((state) => {
+      const ctx = state.ctx;
 
-    particles.forEach((p) => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.life -= p.decay;
-      p.radius *= 0.996;
-      p.wobble += 0.01;
+      ctx.clearRect(0, 0, state.width, state.height);
 
-      drawInkShape(p);
+      state.particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+        p.radius *= 0.996;
+        p.wobble += 0.01;
+
+        drawInkShape(state, p);
+      });
+
+      state.particles = state.particles.filter((p) => p.life > 0);
     });
-
-    particles = particles.filter((p) => p.life > 0);
 
     requestAnimationFrame(animateInk);
   }
+
   window.addEventListener("mousemove", (e) => {
     if (!document.body.classList.contains("intro-finished")) return;
     if (window.innerWidth <= 760) return;
-  
-    const rect = hero.getBoundingClientRect();
-  
-    const insideHero =
-      e.clientX >= rect.left &&
-      e.clientX <= rect.right &&
-      e.clientY >= rect.top &&
-      e.clientY <= rect.bottom;
-  
-    if (!insideHero) {
-      lastX = null;
-      lastY = null;
-      return;
-    }
-  
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-  
-    if (lastX === null || lastY === null) {
-      lastX = x;
-      lastY = y;
-      return;
-    }
-  
-    const dx = x - lastX;
-    const dy = y - lastY;
-    const speed = Math.sqrt(dx * dx + dy * dy);
-  
-    if (speed > 2) {
-      addInk(x, y, speed);
-    }
-  
-    lastX = x;
-    lastY = y;
-  });
-  window.addEventListener("resize", resizeCanvas);
 
-  resizeCanvas();
+    states.forEach((state) => {
+      const rect = state.section.getBoundingClientRect();
+
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!inside) {
+        state.lastX = null;
+        state.lastY = null;
+        return;
+      }
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (state.lastX === null || state.lastY === null) {
+        state.lastX = x;
+        state.lastY = y;
+        return;
+      }
+
+      const dx = x - state.lastX;
+      const dy = y - state.lastY;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+
+      if (speed > 2) {
+        addInk(state, x, y, speed);
+      }
+
+      state.lastX = x;
+      state.lastY = y;
+    });
+  });
+
+  window.addEventListener("resize", resizeAll);
+
+  resizeAll();
   animateInk();
 })();

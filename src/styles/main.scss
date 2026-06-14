@@ -1131,11 +1131,13 @@ body:not(.intro-playing) .floating-cube {
    HERO INK CANVAS FIX
 ================================ */
 
-.hero {
+.hero,
+.graphic {
   position: relative;
 }
 
-.hero-ink-canvas {
+.hero-ink-canvas,
+.section-ink-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
