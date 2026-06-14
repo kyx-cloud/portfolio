@@ -689,3 +689,153 @@ setTimeout(() => {
   resizeAll();
   animateInk();
 })();
+/* ================================
+   MOUSE REACTIVE GRID LINES
+   黑色區域連續版
+================================ */
+
+(() => {
+  const body = document.body;
+
+  const normalSections = document.querySelectorAll(
+    ".hero, .graphic, .food-block.grid-bg, .music-block.music-grid-bg, .mochi-block.mochi-grid-bg, .goodmodel-block.goodmodel-grid-bg"
+  );
+
+  const darkStart = document.querySelector(".about");
+  const darkEnd = document.querySelector(".projects");
+
+  function createGridWrap(className = "mouse-grid-wrap") {
+    const wrap = document.createElement("div");
+    wrap.className = className;
+
+    for (let i = 0; i < 5; i++) {
+      const line = document.createElement("span");
+      line.className = "mouse-grid-line";
+      wrap.appendChild(line);
+    }
+
+    return wrap;
+  }
+
+  function setupMouseMove(target, lines) {
+    let targetX = 0;
+    let currentX = 0;
+
+    target.addEventListener("mousemove", (e) => {
+      if (window.innerWidth <= 760) return;
+
+      const rect = target.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseRatio = (mouseX / rect.width - 0.5) * 2;
+
+      targetX = mouseRatio * 34;
+    });
+
+    target.addEventListener("mouseleave", () => {
+      targetX = 0;
+    });
+
+    function animateLines() {
+      currentX += (targetX - currentX) * 0.08;
+
+      lines.forEach((line, index) => {
+        const depth = 1 + index * 0.18;
+        line.style.transform = `translateX(${currentX * depth}px)`;
+      });
+
+      requestAnimationFrame(animateLines);
+    }
+
+    animateLines();
+  }
+
+  /* 一般區塊：hero / graphic / modal 各自一組 */
+  normalSections.forEach((section) => {
+    if (section.querySelector(".mouse-grid-wrap")) return;
+
+    const wrap = createGridWrap("mouse-grid-wrap");
+    section.prepend(wrap);
+
+    const lines = wrap.querySelectorAll(".mouse-grid-line");
+    setupMouseMove(section, lines);
+  });
+
+  /* 黑色主區域：about + skill + projects 共用一整組線，不會斷 */
+  if (darkStart && darkEnd && !document.querySelector(".dark-continuous-grid")) {
+    const darkWrap = createGridWrap("mouse-grid-wrap dark-continuous-grid");
+    body.appendChild(darkWrap);
+
+    function updateDarkGridPosition() {
+      const startTop = darkStart.offsetTop;
+      const endBottom = darkEnd.offsetTop + darkEnd.offsetHeight;
+
+      darkWrap.style.top = `${startTop}px`;
+      darkWrap.style.height = `${endBottom - startTop}px`;
+    }
+
+    updateDarkGridPosition();
+    window.addEventListener("resize", updateDarkGridPosition);
+    window.addEventListener("load", updateDarkGridPosition);
+
+    const darkLines = darkWrap.querySelectorAll(".mouse-grid-line");
+
+    let targetX = 0;
+    let currentX = 0;
+
+    window.addEventListener("mousemove", (e) => {
+      if (window.innerWidth <= 760) return;
+
+      const rect = darkWrap.getBoundingClientRect();
+
+      const insideDark =
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!insideDark) {
+        targetX = 0;
+        return;
+      }
+
+      const mouseRatio = (e.clientX / window.innerWidth - 0.5) * 2;
+      targetX = mouseRatio * 34;
+    });
+
+    function animateDarkLines() {
+      currentX += (targetX - currentX) * 0.08;
+
+      darkLines.forEach((line, index) => {
+        const depth = 1 + index * 0.18;
+        line.style.transform = `translateX(${currentX * depth}px)`;
+      });
+
+      requestAnimationFrame(animateDarkLines);
+    }
+
+    animateDarkLines();
+  }
+})();
+
+(() => {
+  const titleLineGroups = document.querySelectorAll(
+    ".hero-top-lines, .hero-title-lines, .line-group, .food-title-lines, .music-title-lines, .mochi-title-lines, .goodmodel-title-lines"
+  );
+
+  if (!titleLineGroups.length) return;
+
+  titleLineGroups.forEach((group) => {
+    const lines = group.querySelectorAll("span");
+    if (!lines.length) return;
+
+    gsap.to(lines, {
+      scaleX: 1,
+      duration: 0.75,
+      ease: "power3.out",
+      stagger: 0.16,
+      scrollTrigger: {
+        trigger: group,
+        start: "top 88%",
+        once: true
+      }
+    });
+  });
+})();

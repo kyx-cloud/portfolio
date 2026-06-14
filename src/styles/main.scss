@@ -635,7 +635,7 @@ margin-top: 170px;
   img {
     height: 300px;
     width: 400px;
-    background-color: #343434;
+    background-color: #ffffff;
     object-fit: cover;
     margin-bottom: 22px;
     padding: 10px;
@@ -672,12 +672,12 @@ margin-top: 170px;
   height: 350px;
   margin-bottom: 22px;
   overflow: hidden;
-  background: #343434;
+  background: #fefefe;
   padding: 10px;
   box-sizing: border-box;
 }
 
-/* 把你原本 project-grid article img 的樣式接過來 */
+
 .project-thumb img {
   width: 100%;
   height: 100%;
@@ -1146,8 +1146,222 @@ body:not(.intro-playing) .floating-cube {
   pointer-events: none;
   mix-blend-mode: difference;
 }
+/* ================================
+   MOUSE REACTIVE GRID LINES
+   背景五條線跟著滑鼠左右滑動
+================================ */
+
+.mouse-grid-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mouse-grid-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.7px;
+  background: rgba(0, 0, 0, 0.9);
+  will-change: transform;
+}
+
+/* 黑底區塊變白線 */
+.about .mouse-grid-line,
+.skill .mouse-grid-line,
+.projects .mouse-grid-line,
+.goodmodel-block .mouse-grid-line {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 主頁線條位置 */
+.hero .mouse-grid-line:nth-child(1),
+.about .mouse-grid-line:nth-child(1),
+.skill .mouse-grid-line:nth-child(1),
+.projects .mouse-grid-line:nth-child(1),
+.graphic .mouse-grid-line:nth-child(1) {
+  left: 24px;
+}
+
+.hero .mouse-grid-line:nth-child(2),
+.about .mouse-grid-line:nth-child(2),
+.skill .mouse-grid-line:nth-child(2),
+.projects .mouse-grid-line:nth-child(2),
+.graphic .mouse-grid-line:nth-child(2) {
+  left: 12.5%;
+}
+
+.hero .mouse-grid-line:nth-child(3),
+.about .mouse-grid-line:nth-child(3),
+.skill .mouse-grid-line:nth-child(3),
+.projects .mouse-grid-line:nth-child(3),
+.graphic .mouse-grid-line:nth-child(3) {
+  left: 27%;
+}
+
+.hero .mouse-grid-line:nth-child(4),
+.about .mouse-grid-line:nth-child(4),
+.skill .mouse-grid-line:nth-child(4),
+.projects .mouse-grid-line:nth-child(4),
+.graphic .mouse-grid-line:nth-child(4) {
+  left: 74%;
+}
+
+.hero .mouse-grid-line:nth-child(5),
+.about .mouse-grid-line:nth-child(5),
+.skill .mouse-grid-line:nth-child(5),
+.projects .mouse-grid-line:nth-child(5),
+.graphic .mouse-grid-line:nth-child(5) {
+  left: calc(100% - 24px);
+}
+
+/* Modal 裡的五條線位置 */
+.food-block .mouse-grid-line:nth-child(1),
+.music-block .mouse-grid-line:nth-child(1),
+.mochi-block .mouse-grid-line:nth-child(1),
+.goodmodel-block .mouse-grid-line:nth-child(1) {
+  left: 48px;
+}
+
+.food-block .mouse-grid-line:nth-child(2),
+.music-block .mouse-grid-line:nth-child(2),
+.mochi-block .mouse-grid-line:nth-child(2),
+.goodmodel-block .mouse-grid-line:nth-child(2) {
+  left: 190px;
+}
+
+.food-block .mouse-grid-line:nth-child(3),
+.music-block .mouse-grid-line:nth-child(3),
+.mochi-block .mouse-grid-line:nth-child(3),
+.goodmodel-block .mouse-grid-line:nth-child(3) {
+  left: 364px;
+}
+
+.food-block .mouse-grid-line:nth-child(4),
+.music-block .mouse-grid-line:nth-child(4),
+.mochi-block .mouse-grid-line:nth-child(4),
+.goodmodel-block .mouse-grid-line:nth-child(4) {
+  left: 564px;
+}
+
+.food-block .mouse-grid-line:nth-child(5),
+.music-block .mouse-grid-line:nth-child(5),
+.mochi-block .mouse-grid-line:nth-child(5),
+.goodmodel-block .mouse-grid-line:nth-child(5) {
+  left: 654px;
+}
+/* ================================
+   DARK CONTINUOUS GRID
+   黑色區域五條線連續不斷
+================================ */
+
+body {
+  position: relative;
+}
+
+.dark-continuous-grid {
+  position: absolute !important;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
 
 
+.grid-on-dark {
+  background-image: none !important;
+}
+
+
+.dark-continuous-grid {
+  position: absolute !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+
+.dark-continuous-grid .mouse-grid-line {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 0.7px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  will-change: transform;
+}
+
+.dark-continuous-grid .mouse-grid-line:nth-child(1) {
+  left: 24px !important;
+}
+
+.dark-continuous-grid .mouse-grid-line:nth-child(2) {
+  left: 12.5% !important;
+}
+
+.dark-continuous-grid .mouse-grid-line:nth-child(3) {
+  left: 27% !important;
+}
+
+.dark-continuous-grid .mouse-grid-line:nth-child(4) {
+  left: 74% !important;
+}
+
+.dark-continuous-grid .mouse-grid-line:nth-child(5) {
+  left: calc(100% - 24px) !important;
+}
+
+/* 讓內容壓在線上面 */
+
+.work-title,
+.experience,
+.projects-head,
+.project-grid {
+  position: relative;
+  z-index: 9 !important;
+}
+/* 手機版先關掉，避免卡 */
+@media (max-width: 760px) {
+  .mouse-grid-wrap {
+    display: none;
+  }
+}
+
+
+.hero-top-lines span,
+.hero-title-lines span,
+.line-group span,
+.food-title-lines span,
+.music-title-lines span,
+.mochi-title-lines span,
+.goodmodel-title-lines span {
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* 確保標題線不會被背景互動線蓋掉 */
+.hero-top-lines,
+.hero-title-lines,
+.line-group,
+.food-title-lines,
+.music-title-lines,
+.mochi-title-lines,
+.goodmodel-title-lines {
+  position: relative;
+  z-index: 10;
+}
+.hero-title-lines {
+  position: absolute !important;
+  top: 292px !important; // 整組上下位置，想往下就加大
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 10 !important;
+}
 /* 手機版先關掉，避免卡 */
 @media (max-width: 760px) {
   .hero-ink-canvas {
@@ -1165,7 +1379,13 @@ body:not(.intro-playing) .floating-cube {
     width: 100%;
     overflow-x: hidden;
   }
-
+  .hero-title-lines {
+    position: absolute !important;
+    top: 282px !important; // 整組上下位置，想往下就加大
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+  }
   body {
     font-size: 14px;
   }
