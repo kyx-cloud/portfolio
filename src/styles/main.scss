@@ -1127,7 +1127,31 @@ body:not(.intro-playing) .floating-cube {
   z-index: 1 !important;
   pointer-events: auto;
 }
+/* ================================
+   HERO INK CANVAS FIX
+================================ */
 
+.hero {
+  position: relative;
+}
+
+.hero-ink-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999 !important;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+
+/* 手機版先關掉，避免卡 */
+@media (max-width: 760px) {
+  .hero-ink-canvas {
+    display: none;
+  }
+}
 @media (max-width: 760px) {
 
   /* =========================

@@ -223,7 +223,7 @@ const basePath = import.meta.env.BASE_URL;
 
 const caseData = {
   good: {
-    zh: `${basePath}images/good.jpg`,
+    zh: `${basePath}./images/good.jpg`,
     en: `${basePath}images/good-en.jpg`,
     alt: "Goodmodel project case study"
   },
@@ -477,4 +477,192 @@ setTimeout(() => {
   });
 
   animateCursor();
+})();
+/* ================================
+   HERO INK EFFECT - LIGHT VERSION
+   intro 結束後才啟動，避免太吃效能
+================================ */
+
+(() => {
+  const hero = document.querySelector(".hero");
+  const canvas = document.querySelector("#heroInkCanvas");
+
+  if (!hero || !canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+
+  let particles = [];
+  const MAX_PARTICLES = 36;
+
+  let lastX = null;
+  let lastY = null;
+  let isInsideHero = false;
+
+  function resizeCanvas() {
+    const rect = hero.getBoundingClientRect();
+
+    width = rect.width;
+    height = rect.height;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function getHeroPoint(e) {
+    const rect = hero.getBoundingClientRect();
+
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
+  function addInk(x, y, speed) {
+    if (!document.body.classList.contains("intro-finished")) return;
+    if (window.innerWidth <= 760) return;
+
+    const count = Math.min(3, 1 + Math.floor(speed * 0.08));
+
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 24;
+
+      particles.push({
+        x: x + Math.cos(angle) * distance,
+        y: y + Math.sin(angle) * distance,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: 34 + Math.random() * 58,
+        life: 1,
+        decay: 0.014 + Math.random() * 0.008,
+        wobble: Math.random() * Math.PI * 2,
+        points: 9 + Math.floor(Math.random() * 4)
+      });
+    }
+
+    if (particles.length > MAX_PARTICLES) {
+      particles.splice(0, particles.length - MAX_PARTICLES);
+    }
+  }
+
+  function drawInkShape(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.wobble);
+
+    const pts = [];
+
+    for (let i = 0; i < p.points; i++) {
+      const angle = (i / p.points) * Math.PI * 2;
+
+      const noise =
+        0.86 +
+        Math.sin(angle * 2.1 + p.wobble) * 0.08 +
+        Math.cos(angle * 3.2 - p.wobble) * 0.05;
+
+      const r = p.radius * noise * (0.88 + p.life * 0.12);
+
+      pts.push({
+        x: Math.cos(angle) * r,
+        y: Math.sin(angle) * r
+      });
+    }
+
+    ctx.beginPath();
+
+    const first = pts[0];
+    const second = pts[1];
+
+    ctx.moveTo(
+      (first.x + second.x) / 2,
+      (first.y + second.y) / 2
+    );
+
+    for (let i = 1; i < pts.length; i++) {
+      const current = pts[i];
+      const next = pts[(i + 1) % pts.length];
+
+      const midX = (current.x + next.x) / 2;
+      const midY = (current.y + next.y) / 2;
+
+      ctx.quadraticCurveTo(current.x, current.y, midX, midY);
+    }
+
+    ctx.closePath();
+
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.95 * Math.max(p.life, 0.97)})`;
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function animateInk() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= p.decay;
+      p.radius *= 0.996;
+      p.wobble += 0.01;
+
+      drawInkShape(p);
+    });
+
+    particles = particles.filter((p) => p.life > 0);
+
+    requestAnimationFrame(animateInk);
+  }
+  window.addEventListener("mousemove", (e) => {
+    if (!document.body.classList.contains("intro-finished")) return;
+    if (window.innerWidth <= 760) return;
+  
+    const rect = hero.getBoundingClientRect();
+  
+    const insideHero =
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom;
+  
+    if (!insideHero) {
+      lastX = null;
+      lastY = null;
+      return;
+    }
+  
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+  
+    if (lastX === null || lastY === null) {
+      lastX = x;
+      lastY = y;
+      return;
+    }
+  
+    const dx = x - lastX;
+    const dy = y - lastY;
+    const speed = Math.sqrt(dx * dx + dy * dy);
+  
+    if (speed > 2) {
+      addInk(x, y, speed);
+    }
+  
+    lastX = x;
+    lastY = y;
+  });
+  window.addEventListener("resize", resizeCanvas);
+
+  resizeCanvas();
+  animateInk();
 })();
