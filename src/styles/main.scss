@@ -1324,11 +1324,57 @@ body {
   position: relative;
   z-index: 9 !important;
 }
-/* 手機版先關掉，避免卡 */
+/* =========================================================
+   MOBILE STATIC WHITE GRID LINES
+   手機版：關掉動態線，顯示原本靜止白線
+========================================================= */
+
 @media (max-width: 760px) {
-  .mouse-grid-wrap {
-    display: none;
+
+  /* 手機版不要跑滑鼠互動線 */
+  .mouse-grid-wrap,
+  .dark-continuous-grid {
+    display: none !important;
   }
+
+  /* 黑色區域恢復原本靜態白線 */
+  .grid-on-dark {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.3) 1px, transparent 1px) !important;
+
+    background-size:
+      1px 100%,
+      1px 100%,
+      1px 100%,
+      1px 100%,
+      1px 100% !important;
+
+    background-position:
+      18px 0,
+      25% 0,
+      50% 0,
+      75% 0,
+      calc(100% - 18px) 0 !important;
+
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      no-repeat,
+      no-repeat,
+      no-repeat !important;
+  }
+
+ 
 }
 
 
@@ -1702,7 +1748,7 @@ body {
 
   .skill-list div {
     display: grid;
-    grid-template-columns: 36% 64%;
+    grid-template-columns: 33% 64%;
     column-gap: 12px;
     margin-bottom: 20px;
   }
