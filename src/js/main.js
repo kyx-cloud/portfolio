@@ -329,9 +329,11 @@ function finishIntro() {
 
     gsap.set(heroCube, {
       position: "fixed",
-      left: "78%",
-      top: "38%",
-      scale: 1.5
+      left: "50%",
+      top: "60%",
+      scale: 1.5,
+      xPercent: -50,
+      yPercent: -50
     });
   }
 
